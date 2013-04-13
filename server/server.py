@@ -62,7 +62,7 @@ def queue(classid):
 
 @app.route('/index/<studentid>/in/<classid>', methods=[ 'POST'])
 def indexedstudent(student,classid):
-    #gets index of student
+    #gets index of student in class queue
     pass
 
  
