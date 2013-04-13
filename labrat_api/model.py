@@ -3,7 +3,7 @@ import psycopg2.extras
 
 class PgsqlModel(object):
   def __init__(self):
-    self.lastID = None
+    #self.lastID = None
     try:
         self.conn = psycopg2.connect("dbname='labrat' user='labrat' host='localhost' password='f00b@r'")
     except:
@@ -24,7 +24,7 @@ class PgsqlModel(object):
 
 
   def getLastImportID(self):
-    if not self.lastID:
+    #if not self.lastID:
       q = """select
             id
           from
@@ -34,8 +34,8 @@ class PgsqlModel(object):
           order by timestamp desc
           limit 1"""
       rows = self.query(q)
-      self.lastID = rows[0]['id']
-    return self.lastID
+      return rows[0]['id']
+    #return self.lastID
 
 
   def getUserFromHost(self,hostname):
