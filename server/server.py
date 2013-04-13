@@ -67,7 +67,7 @@ def helped(studentid,classid):
         r.removeFromPending(classid,studentid)
     return redirect(url_for('index'))
 
-@app.route('/helpnext/<classid>', methods=[ 'POST'])
+@app.route('/helpnext/<classid>', methods=[ 'GET','POST'])
 def helpnext(classid):
     #helps next student in classid
     s = session_init(request)
