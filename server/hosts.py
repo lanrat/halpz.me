@@ -1,4 +1,5 @@
 from paramiko import SSHClient
+import paramiko
 import model
 
 class HostFinder(object):
