@@ -12,20 +12,6 @@ r = model.RedisModel()
 #default
 @app.route('/')
 def index():
-    sess = r.getSession(session['_id'])
-    #FOR STUDENTS
-    if sess['type'] == 'student':
-        if False:
-            # the user is in a queue
-            # redirect them to the /with/class url for the queue they're in
-            return redirect(url_for('/with/%s' % escape(session['class'])))
-        else:
-            # select class they need help for(they will just type in the number)
-            # goto helpwith
-            return render_template('index.html')
-    #FOR TUTORS
-    else if session['type'] == 'tutor':
-        return render_template('tutor_home.html')
     return render_template('index.html')
 
 @app.route('/tutor/', methods=['POST'])
