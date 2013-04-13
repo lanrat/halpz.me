@@ -10,15 +10,14 @@ r = model.RedisModel()
 def index():
     return 'Welcome to Halpzme'
 
-@app.route('/tutorlogin/')
-def tutorlogin():
-	#on success go to tutorhome()
-	#on fail go to tutorlogin()
+@app.route('/login/')
+def login():
+	#give option to pick whether student or tutor
+		#depending on response go to tutorhome or studenthome
 	pass
 
 @app.route('/tutorhome/')
 def tutorhome():
-	#verify they are tutor 
 	#if they didn't specify which classes they will tutor, and the time they will tutor until:
 		#make them specify that
 	#else
@@ -29,14 +28,18 @@ def tutorhome():
 #look at zach's UI for this
 def studenthome():
 	#select class they need help for
+		#goto helpwith
 	#show everyone on the board right now, the tutors tutoring their class right now, maybe an ETA
 	#if they not asked for help
-		#show an ask for help button with autofill location field based on Ian's API
+		#show an ask for help button with autofill name and location field based on Ian's API
 	#else
 		#show their place in the queue, ie 4th on the list(should update in real time)
 
 	pass
 
+@app.route('/with/<class>')
+def helpwith(class):
+	pass
 
 if __name__ == "__main__":
     app.run()
