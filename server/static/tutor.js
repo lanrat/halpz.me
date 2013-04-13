@@ -23,7 +23,7 @@ $(function() {
             $("#addedQueues").append(output);
              $('.helpButton').click(function(c){
             var info = c.target.dataset["course"];
-            $.ajax{'/helpnext/'+info,{dataType:"json",success:function(d){
+            $.ajax('/helpnext/'+info,{dataType:"json",success:function(d){
                 $('.currLocation').html( d.studentlocation);
                 $('.currStudent').html(d.name);
                 
