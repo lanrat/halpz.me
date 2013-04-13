@@ -50,7 +50,7 @@ def helpwith(classid):
                 dic['student_location']=request.args['student_location']
             if dic:
                 r.setSession(s['id'],dic)
-            r.studentAdd(classid,s['uid'])
+            r.studentAdd(classid,s['id'])
         return render_template('class.html',currStudent=s,classId=classid)
     return redirect(url_for('index'))
 
