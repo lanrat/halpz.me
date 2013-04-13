@@ -135,7 +135,7 @@ def validateclass(classid):
 @app.route('/lookupuser/')
 def lookup_student_name_and_location():
     data = []
-    ip = request.headers['X-Forwarded-For'])
+    ip = request.headers['X-Forwarded-For']
 
    # hostname = h.find_hostname(ip)
     #user's real name

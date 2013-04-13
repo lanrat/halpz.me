@@ -19,16 +19,20 @@
 	</div>
 	<div class="bodyContainer bigFont">
 		<div id="currStudent">
+		<div class="details">
 			<img src="{{ currStudent.profilePicUrl }}"/>
 			<div class="details">
 				<div class="bigFont">{{ currStudent.name }}</div>
 				<div class="smallFont">{{ currStudent.studentlocation }}</div>
 			</div>
+			</div>
+			<div class="former">
 			<form action="/with/{{classId}}" id="helpnameform" class="form-wrapper cf topMarginSingle" method="post">
 				<input name="name" id="name" type="text" placeholder="name" required>
 				<input name="studentlocation" id="studentlocation" type="text" placeholder="location" required>
 				<button type="submit">halp!</button>
 			</form>
+			</div>
 		</div>
 		<div id="boardsAndTutors">
 			
