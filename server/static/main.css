@@ -100,9 +100,22 @@
 	margin-bottom: 15px;
 }
 
-#stats, #tutors {
+#stats, #tutors , #currentTutor{
 	float:right;
 	width:500px;
+}
+
+#currentTutor img {
+	float:left;
+	width:40px;
+	height:40px;
+	margin-top:-3px
+}
+
+#currentTutor .details {
+	margin-top:97px;
+	margin-left:50px;
+	font-size: 115%;
 }
 
 .tutor img {
@@ -121,7 +134,7 @@
 }
 
 #nowServing .student .details {
-	padding-top:0px;
+	padding-top:2px;
 }
 
 .student .details {

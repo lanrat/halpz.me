@@ -12,10 +12,10 @@
 		<div id="innerheader" class="bodyContainer">
 			<img src="/static/halpzme_logo.png" />
 			<div id="currentTutor">
-				<img src="/static/profpics/20.jpg"/>
+				<img src="{{ currTutor.profPicUrl }}"/>
 				<div class="details">
-					<div class="bigFont">Jack</div>
-					<div class="smallFont">until 5pm</div>
+					<div class="bigFont">{{ currTutor.firstName }} </div>
+					<div class="smallFont">until {{ currTutor.endHours }}</div>
 				</div>
 			</div>
 		</div>
@@ -25,22 +25,40 @@
 			<div id="stats">
 				<div class="boardName bigFont">stats </div>
 					<div class="details">
-						<div class="stopwatch">5:00 min</div>
-						<div class="today smallFont">helped 10 students today</div>
-						<div class="allTime smallFont">helped 9001 students total</div>
+						<div class="stopwatch">0:00 min</div>
+						<div class="today smallFont">helped {{ currTutor.todayCount }} students today</div>
+						<div class="allTime smallFont">helped {{ currTutor.allTimeCount }} students total</div>
 					</div>
 				</div>
 				<div id="nowServing">
 					<div class="boardName bigFont">now serving</div>
 					<div class="student">
-						<img src="/static/profpics/4.jpg"/>
+						<img src="{{ nowServing.profPicUrl }}"/>
 						<div class="details">
-							<div class="bigFont">Lauren Ipsum</div>
-							<div class="smallFont">b230 terminal 42 (CSE 30)</div>
+							<div class="bigFont">{{ nowServing.fullName }}/div>
+							<div class="smallFont">{{ nowServing.location }} ({{ nowServing.classId }})</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+		<div id="queues">
+			{% for queue in queues %}
+				<div class="queue">
+					<div class="boardName bigFont">{{ queue.classId }}</div>
+					{% for student in queue.students %}
+						<div class="student">
+							<img src="{{ student.profPicUrl }}"/>
+							<div class="details">
+								<div class="bigFont">{{ student.fullName }}</div>
+							</div>
+						</div>
+				{% endfor %}
+				</div>
+			{% endfor %}
+				<div class="addNewClass">
+					add new class
+				</div>
 		</div>
 	</div>
 {% endblock %}
