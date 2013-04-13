@@ -2,7 +2,7 @@ $(function() {
     $('#inputform').submit(function(){
         var course = $('#tags').val();
         window.location = '/with/'+course
-        
+        return false;
     });
     
     var availableTags = [];
