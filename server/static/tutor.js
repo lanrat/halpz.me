@@ -26,6 +26,7 @@ $(function() {
             $.ajax('/helpnext/'+info,{dataType:"json",success:function(d){
                 $('.currLocation').html( d.studentlocation);
                 $('.currStudent').html(d.name);
+       
                 
                 
             }
