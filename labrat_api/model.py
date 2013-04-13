@@ -8,25 +8,69 @@ class PgsqlModel(object):
     except:
         print "I am unable to connect to the database"
 
+  def query(self,string,args=None):
+    cur = self.conn.cursor()
+    if args:
+      cur.execute(string,args)
+    else:
+      cur.execute(string)
+    return cur.fetchall()
+
+
   def getLastImportID(self):
     if not self.lastID:
-      q = "select id from imports where done = true order by timestamp desc limit 1"
-      cur = conn.cursor()
-      cur.execute(q)
-      rows = cur.fetchall()
+      q = """select
+            id
+          from
+            imports
+          where
+            done = true
+          order by timestamp desc
+          limit 1"""
+      rows = self.query(q)
       self.lastID = rows[0][0]
     return self.lastID
 
 
   def getUserFromHost(self,hostname):
-    try:
-      id = self.lastID
-      cur = self.conn.cursor()
-      cur.execute("""select users.name from hosts, users, logins where hosts.name = %s and hosts.id = logins.host_id and users.id = logins.user_id;""", (hostname,))
-      rows = cur.fetchall()
+      q = """select
+            users.name
+          from
+            hosts,
+            users,
+            logins
+          where
+            hosts.hostname = %s and
+            hosts.id = logins.host_id and
+            users.id = logins.user_id and
+            logins.import_id = %s
+            ;"""
+      rows = self.query(q,(hostname,str(self.getLastImportID())))
       if len(rows) > 0:
-        return rows[0][0]
+        return [row[0] for row in rows]
       else:
         return None
-    except:
-      cur.clear()
+
+
+  def findUser(self,user):
+    q="""select
+          hosts.location,
+          hosts.name as terminal
+        from
+          hosts,
+          users,
+          logins
+        where
+          users.login = %s and
+          hosts.id = logins.host_id and
+          users.id = logins.user_id and
+          logins.import_id = %d"""
+      rows = self.query(q,(user,self.getLastImportID()))
+      if len(rows) > 0:
+        return rows
+      else:
+        return None
+
+
+
+
