@@ -145,8 +145,9 @@ def validateclass(classid):
 def lookup_user_info(ip):
     data = []
     resp = requests.get('http://localhost:5001/' + ip + '/user.json').json()
-    data['name'] = resp['name']
-    data['location'] = resp['location']
+    if resp:
+        data['name'] = resp['name']
+        data['location'] = resp['location']
     return data
 
 #@app.route('/lookupuser/')
