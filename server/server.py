@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import model
 
 #initialize flask server and redis db
@@ -32,7 +32,6 @@ def index():
     #FOR TUTORS
     else if session['type'] == 'tutor':
         return render_template('tutor_home.html')
-
     return render_template('index.html')
 
 @app.route('/tutor/', methods=['POST'])
@@ -79,12 +78,15 @@ def indexedstudent(studentid,classid):
 
 
 def validatestudent(session,studentid):
+    #first check if session matches student or session is a tutor
+    #then make sure student is valid format
     pass
 
 def validateclass(classid):
+    #make sure class if valid format
     pass
     
 #achievement idea: over 1 million served(like mcdonalds)
 if __name__ == "__main__":
-    app.run()
+    app.run(debug = True)
 
