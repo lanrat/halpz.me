@@ -199,6 +199,13 @@ body {
 	text-decoration: none;
 }
 
+body .autocomplete-suggestions {
+	background:white;
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
 .addNewClass {
 	width:240px;
 	height:260px;
