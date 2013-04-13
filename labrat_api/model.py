@@ -59,7 +59,8 @@ class PgsqlModel(object):
 
   def getUserFromIP(self,addr):
       q = """select
-            users.name
+            users.name,
+            hosts.hostname
           from
             hosts,
             users,
