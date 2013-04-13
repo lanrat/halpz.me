@@ -30,7 +30,7 @@ def index():
             # goto helpwith
             return render_template('index.html')
     #FOR TUTORS
-    else if session['type'] == 'tutor':
+    elif session['type'] == 'tutor':
         return render_template('tutor_home.html')
     return render_template('index.html')
 
