@@ -143,7 +143,7 @@ def validateclass(classid):
 
 #name and location
 def lookup_user_info(ip):
-    data = []
+    data = {}
     resp = requests.get('http://localhost:5001/' + ip + '/user.json').json()
     if resp:
         data['name'] = resp['name']
