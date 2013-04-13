@@ -35,4 +35,13 @@ class RedisModel(object):
         except ValueError:
             return maxI+1
             
-   
+    def getSession(self,sid):
+        s = self.r.hgetall("session:"+str(sid))
+        if s:
+            return s
+        defaults = {'type':'student',
+                    'name':'',
+                    'tutor_classes':'',
+                    'student_location':''
+                    }
+        r.hset("session:"+str(sid), defaults)
