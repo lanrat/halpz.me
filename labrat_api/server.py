@@ -12,7 +12,7 @@ def hello():
 
 @app.route("/<host>/user.json", methods=['GET'])
 def user(host):
-    return json.dump(mod.getUserFromHost(host))
+    return json.dumps(mod.getUserFromHost(host))
 
 if __name__ == "__main__":
     app.run(port=5001,debug=True)
