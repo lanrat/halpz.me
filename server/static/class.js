@@ -1,8 +1,8 @@
 function getTutors(classid, callback){ 
-   $.get("/tutors/"+classid+".json", {success: callback});
+   $.get("/tutors/"+classid+".json", {dataType: "json",success: callback});
 }
 function getQueue(classid, callback){ 
-   $.get("/queue/"+classid+".json", {success: callback});
+   $.get("/queue/"+classid+".json", {dataType: "json",success: callback});
 }
 
 
