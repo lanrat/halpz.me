@@ -46,8 +46,8 @@ class RedisModel(object):
         output=[]
         for sid in l:
             d = self.r.hgetall("session:"+str(sid))
-            output = d  
-        return l
+            output.append(d)
+        return output
     
     def getSession(self,sid):
         s = self.r.hgetall("session:"+str(sid))
