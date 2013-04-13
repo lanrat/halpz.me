@@ -27,7 +27,7 @@ $(function() {
     $('.addNewClass').click(function(){
         $('#addClassDialog').removeClass('hidden');
         
-    }
+    });
         
     var availableTags = [];
     function split( val ) {
