@@ -20,7 +20,6 @@
 
 .topMarginSingle {
 	margin-top:20px;
-
 }
 
 .bigFont {
@@ -35,8 +34,79 @@
 	font-size: 130%;
 }
 
+.smallFont {
+	font-size: 80%;
+}
+
+#classid {
+	position:absolute;
+	top:65px;
+	text-transform: uppercase;
+	font-size: 180%;
+}
+
+#boardsAndTutors {
+	clear:both;
+	margin-top:60px;
+}
+
+#currStudent  img {
+	float:left;
+	opacity: 0.4;
+	width: 100px;
+	height: 100px;
+}
+
+#currStudent .details {
+	padding-top:20px;
+	margin-left:120px;
+}
+
+.student{
+	height:80px;
+	clear:left;
+}
+
+.student img {
+	float:left;
+	width: 60px;
+	height: 60px;
+}
+
+#boardName {
+	margin-bottom: 10px;
+	font-size: 160%;
+}
+
+#tutors {
+	float:right;
+	width:500px;
+}
+
+#tutor img {
+	float:left;
+	width:60px;
+	height:60px;
+	border-radius:30px;
+}
+
+#tutor .details {
+	margin-left:70px;
+}
+
+.details .bigFont {
+	font-size:115%;
+}
+
+
+.student .details {
+	padding-top:15px;
+	margin-left:70px;
+}
+
 body {
 	margin:0;
 	padding:0;
 	font-family: 'Ubuntu', sans-serif;
+	color:#5E2F01;
 }

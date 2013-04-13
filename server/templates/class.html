@@ -1,0 +1,60 @@
+<!doctype html>
+
+{% block head %}
+	<link rel="stylesheet" href="/static/main.css" />
+	<link rel="stylesheet" href="/static/index.css" />
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block body %}
+	<title>Welcome to Halpz.me</title>
+	<div id="header">
+		<div id="innerheader" class="bodyContainer">
+			<img src="/static/halpzme_logo.png" />
+			<div id="classid">cse30</div>
+		</div>
+	</div>
+	<div class="bodyContainer bigFont">
+		<div id="currStudent">
+			<img src="/static/profpics/0.jpg"/>
+			<div class="details">
+				<div class="bigFont">Jane Joe Student</div>
+				<div class="smallFont">b230 terminal 42</div>
+			</div>
+		</div>
+		<div id="boardsAndTutors">
+			<div id="tutors">
+				<div id="boardName" class="bigFont">the tutors</div>
+				<div id="tutor">
+					<img src="/static/profpics/11.jpg"/>
+					<div class="details">
+						<div class="bigFont">Jack</div>
+						<div class="smallFont">until 5pm</div>
+					</div>
+				</div>
+			</div>
+			<div id="board">
+				<div id="boardName" class="bigFont">the board</div>
+				<div class="student">
+					<img src="/static/profpics/3.jpg"/>
+					<div class="details">
+						<div class="bigFont">Matt Dijkstra</div>
+					</div>
+				</div>
+				<div class="student">
+					<img src="/static/profpics/6.jpg"/>
+					<div class="details">
+						<div class="bigFont">Lauren Ipsum</div>
+					</div>
+				</div>
+				<div class="student">
+					<img src="/static/profpics/10.jpg"/>
+					<div class="details">
+						<div class="bigFont">Joe Bob</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+{% endblock %}
