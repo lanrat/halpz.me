@@ -2,7 +2,7 @@ import redis
 
 class RedisModel(object):
     
-    def __init__(self,host='localhost',port=9000):
+    def __init__(self,host='ian.ucsd.edu',port=9000):
         self.r = redis.StrictRedis(host=host,port=port,db=0)
     
     def studentIn(self,classid,studentinfo):
