@@ -11,7 +11,7 @@ $(function() {
         var course = $('#addedClassName').val();
         getQueue(course,function(data){
             var data = $.parseJSON(data);
-            var output = '<li><div class="boardName bigFont">'+course+' ('+data.length+' waiting students)</div>'; 
+            var output = '<li><div class="helpButton" data-course="'+course+'">halp!</div><div class="boardName bigFont">'+course+' ('+data.length+' waiting students)</div>'; 
             for (var i = 0; data && i < data.length && i < 3; i++){
                 output += '<div class="student">';
                 output += '<img src ="' + data[i]['profilePicUrl'] + '"/>';
