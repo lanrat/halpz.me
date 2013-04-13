@@ -7,24 +7,33 @@ app = Flask(__name__)
 app.secret_key = 'o\xb8~Q>%\xed\x90\xb9A\x84\x8e\xfa\xabD\x01\xf0\xc2#b\x07\xe9*H'
 r = model.RedisModel()
 
+def init_session():
+    # just assume the current user is a student initially
+    if not 'type' in session:
+        session['type'] = 'student'
+        session['name'] = ''
+        session['tutor_classes'] = []
+        session['student_location'] = None
+
 #default
 @app.route('/')
 def index():
+    init_session()
     #FOR STUDENTS
-    if 'class' in session:
-        # the user is in a queue
-        # redirect them to the /with/class url for the queue they're in
-        return redirect('/with/%s' % escape(session['class']))
-    else:
-        # select class they need help for(they will just type in the number)
-        # goto helpwith
+    if session['type'] == 'student':
+        if False:
+            # the user is in a queue
+            # redirect them to the /with/class url for the queue they're in
+            return redirect('/with/%s' % escape(session['class']))
+        else:
+            # select class they need help for(they will just type in the number)
+            # goto helpwith
+            return render_template('index.html')
     #FOR TUTORS
-    #if they didn't specify which classes they will tutor, and the time they will tutor until:
-        #make them specify that(they will type in both)
-    #else
-        #show them how many students need help for each of the classes they are signed up for, and show a button for each class to say help a student from that class
+    else if session['type'] == 'tutor':
+        return render_template('tutor_home.html')
 
-    return 'Welcome to Halpzme'
+    return render_template('index.html')
 
 @app.route('/tutor/', methods=['POST'])
 def tutorhome():
