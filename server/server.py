@@ -3,25 +3,26 @@ import model
 
 #initialize flask server and redis db
 app = Flask(__name__)
+#for the sessions
+app.secret_key = 'o\xb8~Q>%\xed\x90\xb9A\x84\x8e\xfa\xabD\x01\xf0\xc2#b\x07\xe9*H'
 r = model.RedisModel()
 
 #default
 @app.route('/')
 def index():
     #FOR STUDENTS
-    #select class they need help for(they will just type in the number)
-            #goto helpwith
-    #show everyone on the board right now, the tutors tutoring their class right now, maybe an ETA
-    #if they not asked for help
-            #show an ask for help button with autofill name and location field based on Ian's API
-    #else
-            #show their place in the queue, ie 4th on the list(should update in real time)
-
+    if 'class' in session:
+        # the user is in a queue
+        # redirect them to the /with/class url for the queue they're in
+        return redirect('/with/%s' % escape(session['class']))
+    else:
+        # select class they need help for(they will just type in the number)
+        # goto helpwith
     #FOR TUTORS
     #if they didn't specify which classes they will tutor, and the time they will tutor until:
-            #make them specify that(they will type in both)
+        #make them specify that(they will type in both)
     #else
-            #show them how many students need help for each of the classes they are signed up for, and show a button for each class to say help a student from that class
+        #show them how many students need help for each of the classes they are signed up for, and show a button for each class to say help a student from that class
 
     return 'Welcome to Halpzme'
 
@@ -35,9 +36,11 @@ def studenthome():
     #changes session to student
     pass
 
-@app.route('/with/<classid>', methods=[ 'POST'])
+@app.route('/with/<classid>', methods=['POST', 'GET'])
 def helpwith(classid):
-    #student requests tutor for class
+    #get - show their place in the queue, ie 4th on the list(should update in real time)
+    # show an ask for help button with autofill name and location field based on Ian's API
+    #post - student requests tutor for class
     pass
 
 @app.route('/helped/<studentid>/with/<classid>', methods=[ 'POST'])
