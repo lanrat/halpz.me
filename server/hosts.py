@@ -9,7 +9,7 @@ class HostFinder(object):
         result = r.getHostname(ip)
         if not result: 
             ssh = paramiko.SSHClient()
-            ssh.connect(ip, username="yolo1", password="everyday")
+            ssh.connect(ip, username="idfoster")
             ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("hostname")
             result = ssh_stdin
             r.addHostname(ip, result)
