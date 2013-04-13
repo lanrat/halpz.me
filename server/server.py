@@ -130,11 +130,21 @@ def validateclass(classid):
         return True
     return False
 
+"""def magic_shit(ip):
+    result = redis_lookup(ip)
+    #if you didn't find it in cache 
+    if not result: 
+        actually do the ssh bullshit, then put it in the cache
+        result = bull
+    else:
+        return result
+"""
 @app.route('/lookupuser/')
 def lookup_student_name_and_location():
     data = []
-    hostname = request.host
-    return hostname 
+    ip = request.headers['X-Forwarded-For'])
+
+   # hostname = magic_shit(ip)
 
     #user's real name
     name = requests.get('http://localhost:5001/' + hostname + '/user.json').json()[0]
