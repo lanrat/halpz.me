@@ -45,6 +45,8 @@ def helpwith(classid):
     if validateclass(classid):
         if request.method == 'POST':
             dic = {}
+            print request.values
+            print request.data
             dic['name']=request.values.get('name')
             dic['studentlocation']=request.values.get('studentlocation')
             r.setSession(s['id'],dic)
