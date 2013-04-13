@@ -34,7 +34,7 @@ $(function(){
                 output += '</div>';
         }
 
-        $("#tutors").html(output);                              
+        $("#board").html(output);                              
                                         
     });
 });
