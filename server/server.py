@@ -137,29 +137,7 @@ def validateclass(classid):
     else:
         return result
 """
-@app.route('/lookupuser/')
-def lookup_student_name_and_location():
-    data = []
-    ip = request.headers['X-Forwarded-For'])
 
-   # hostname = magic_shit(ip)
-    #user's real name
-    name = requests.get('http://localhost:5001/' + hostname + '/user.json').json()[0]
-    if name:
-        data['name'] = name
-    else:
-        data['name'] = ""
-
-    #user's location
-    if hostname.count('-') is 2:
-        room, terminal = hostname.split('-')[1:3]
-    else:
-        room, terminal = ""
-
-    data['room'] = room
-    data['terminal'] = terminal
-
-    return json.dumps(data)
 
 #achievement idea: over 1 million served(like mcdonalds)
 if __name__ == "__main__":
