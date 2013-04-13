@@ -1,7 +1,7 @@
 $(function() {
     $('#inputform').submit(function(){
         var course = $('#tags').val();
-        location.href = '/with/'+course
+        window.location = '/with/'+course
         
     });
     
