@@ -145,7 +145,7 @@ def magic_shit(ip):
 @app.route('/lookupuser/')
 def lookup_student_name_and_location():
     data = []
-    ip = request.headers['X-Forwarded-For'])
+    ip = request.headers['X-Forwarded-For']
 
    # hostname = magic_shit(ip)
     #user's real name
