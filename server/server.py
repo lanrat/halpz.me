@@ -40,7 +40,9 @@ def helpwith(classid):
     #post - student requests tutor for class
     s = session_init()
     if validateclass(classid):
-        pass
+        if request.method == 'POST':
+            r.studentAdd(classid,s['uid'])
+        return render_template('class.html')
     return redirect(url_for('index'))
 
 @app.route('/helped/<studentid>/with/<classid>', methods=[ 'POST'])
@@ -48,7 +50,7 @@ def helped(studentid,classid):
     #adds student to queue
     s = session_init()
     if validatestudent(s,studentid) and validateclass(classid):
-        pass
+        r.removeFromPending(classid,studentid)
     return redirect(url_for('index'))
 
 @app.route('/helpnext/<classid>', methods=[ 'POST'])
@@ -56,8 +58,9 @@ def helpnext(classid):
     #helps next student in classid
     s = session_init()
     if validateclass(classid):
-        pass
-    return redirect(url_for('index'))
+        student = r.popStudent(classid)
+        return json.dumps(student)
+    return json.dumps([])
 
 @app.route('/cannothelp/<studentid>/with/<classid>', methods=[ 'POST'])
 def cannothelp(studentid,classid):
@@ -72,8 +75,8 @@ def queue(classid):
     #gets queue for class in json
     s = session_init()
     if validateclass(classid):
-        l
-        return json.dumps(
+        l = getStudentList(classid)
+        return json.dumps(l)
     return redirect(url_for('index'))   
 
 @app.route('/index/<studentid>/in/<classid>', methods=[ 'POST'])
@@ -84,7 +87,7 @@ def indexedstudent(studentid,classid):
         pass
     return redirect(url_for('index'))
 
-def s = session_init():
+def session_init():
     if 'uid' not in session:
         session['uid'] = uuid.uuid4()
     s = r.getSession(session['uid'])

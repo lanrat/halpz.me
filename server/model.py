@@ -4,10 +4,14 @@ class RedisModel(object):
     
     def __init__(self,host='localhost',port=9000):
         self.r = redis.StrictRedis(host=host,port=port,db=0)
-        
+    
+    def studentIn(self,classid,studentinfo):
+        return self.r.sismember('set:'+str(classid),studentinfo)
+    
     def studentAdd(self,classid,studentinfo):
-        self.r.rpush('queue:'+str(classid),studentinfo)
-        self.r.sadd('set:'+str(classid),studentinfo)
+        if not self.studentIn(classid,studentinfo):
+            self.r.rpush('queue:'+str(classid),studentinfo)
+            self.r.sadd('set:'+str(classid),studentinfo)
         
     def getClassSize(self,classid):
         return self.r.llen('queue:'+str(classid))
@@ -16,7 +20,8 @@ class RedisModel(object):
         studentinfo = self.r.lpop('queue:'+str(classid))
         self.r.sadd('pending:'+str(classid),studentinfo)
         self.r.srem('set:'+str(classid),studentinfo)
-        return studentinfo
+        s = self.r.hgetall("session:"+str(studentinfo))
+        return s
     
     def removeFromPending(self,classid,studentinfo):
         self.r.srem('pending:'+str(classid),studentinfo)
@@ -39,8 +44,8 @@ class RedisModel(object):
         l = self.r.lrange('queue:'+str(classid),0,maxI)
         output=[]
         for sid in l:
-            self.r.hgetall("session:"+str(sid))
-            
+            d = self.r.hgetall("session:"+str(sid))
+            output = d  
         return l
     
     def getSession(self,sid):
