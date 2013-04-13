@@ -34,6 +34,10 @@ def toplabusers():
 def occupantcount():
     return json.dumps(mod.getNumberOfLabOccupants())
 
+@app.route("/laboccupants.json", methods=['GET'])
+def laboccupants():
+    return json.dumps(mod.getLabOccupants())
+
 @app.route("/labpie.json", methods=['GET'])
 def labpie():
     return json.dumps(mod.getLabPie())
