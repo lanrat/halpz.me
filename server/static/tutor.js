@@ -5,10 +5,11 @@ function getQueue(classid, callback){
 $(function() {
     
     $('#addClassForm').submit(function(){
+        $('#addClassDialog').addClass('hidden');
         var course = $('#addedClassName').val();
         getQueue(course,function(data){
             var data = $.parseJSON(data);
-            var output = '<li><div class="boardName bigFont">'+course+' ('+data.length+' waiting students)/</div>'; 
+            var output = '<li><div class="boardName bigFont">'+course+' ('+data.length+' waiting students)</div>'; 
             for (var i = 0; data && i < data.length && i < 3; i++){
                 output += '<div class="vals">';
                 output += '<img src ="' + data[i]['profilePicUrl'] + '"/>';
