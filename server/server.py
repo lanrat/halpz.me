@@ -82,7 +82,7 @@ def queue(classid):
     s = session_init()
     classid = str(classid)
     if validateclass(classid):
-        l = getStudentList(classid)
+        l = r.getStudentList(classid)
         return json.dumps(l)
     return json.dumps([])   
 
