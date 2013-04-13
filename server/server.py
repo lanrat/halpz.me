@@ -1,6 +1,7 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
 import model
 import json
+import requests
 import uuid
 
 #initialize flask server and redis db
@@ -122,7 +123,10 @@ def validateclass(classid):
         r.addCourse(classid)
         return True
     return False
-    
+
+def lookup_student_name(computer):
+    return requests.get('http://localhost:5001/' + computer + '/user.json').json()
+
 #achievement idea: over 1 million served(like mcdonalds)
 if __name__ == "__main__":
     app.run(debug = True)
