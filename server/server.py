@@ -67,9 +67,12 @@ def indexedstudent(studentid,classid):
 
 
 def validatestudent(session,studentid):
+    #first check if session matches student or session is a tutor
+    #then make sure student is valid format
     pass
 
 def validateclass(classid):
+    #make sure class if valid format
     pass
     
 #achievement idea: over 1 million served(like mcdonalds)
