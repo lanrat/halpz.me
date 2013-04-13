@@ -44,13 +44,9 @@ def helpwith(classid):
     if validateclass(classid):
         if request.method == 'POST':
             dic = {}
-            print request.args
-            if 'name' in request.args:
-                dic['name']=request.args['name']
-            if 'student_location' in request.args:
-                dic['student_location']=request.args['student_location']
-            if dic:
-                r.setSession(s['id'],dic)
+            dic['name']=request.args['name']
+            dic['student_location']=request.args['student_location']
+            r.setSession(s['id'],dic)
             r.studentAdd(classid,s['id'])
         return render_template('class.html',currStudent=s,classId=classid)
     return redirect(url_for('index'))
