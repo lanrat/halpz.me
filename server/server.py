@@ -42,7 +42,7 @@ def helpwith(classid):
     classid = str(classid)
     if validateclass(classid):
         if request.method == 'POST':
-            r.setSession(s['id'],{'name':request['name']})
+            r.setSession(s['id'],{'name':request.args['name']})
             r.studentAdd(classid,s['uid'])
         return render_template('class.html')
     return redirect(url_for('index'))
@@ -82,19 +82,9 @@ def queue(classid):
     s = session_init()
     classid = str(classid)
     if validateclass(classid):
-        l = getStudentList(classid)
+        l = r.getStudentList(classid)
         return json.dumps(l)
-    return redirect(url_for('index'))   
-
-@app.route('/index/<studentid>/in/<classid>', methods=[ 'POST'])
-def indexedstudent(studentid,classid):
-    #gets index of student in class queue
-    s = session_init()
-    classid = str(classid)
-    studentid = str(studentid)
-    if validatestudent(s,studentid) and validateclass(classid):
-        pass
-    return redirect(url_for('index'))
+    return json.dumps([])   
 
 @app.route('/courses.json', methods=[ 'GET'])
 def courses():
