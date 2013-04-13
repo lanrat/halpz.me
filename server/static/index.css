@@ -37,6 +37,8 @@
 #helpnameform.form-wrapper {
     width: 801px;
 	margin-left:-2px;
+	padding-top:20px;
+	clear:left;
 }
 
 #helpnameform.form-wrapper #location {
