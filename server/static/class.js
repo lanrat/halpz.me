@@ -7,7 +7,7 @@ function getQueue(classid, callback){
 
 
 $(function(){
-    cid = $('#classid').html
+    cid = $('#classid').html()
     getTutors(cid,function(data){ 
         var output = '<div class="boardName bigFont">the tutors</div>'; 
         for (var i = 0; data && i < data.length; i++){
