@@ -72,8 +72,7 @@ def queue(classid):
     #gets queue for class in json
     s = session_init()
     if validateclass(classid):
-        l
-        return json.dumps(
+        return json.dumps()
     return redirect(url_for('index'))   
 
 @app.route('/index/<studentid>/in/<classid>', methods=[ 'POST'])
@@ -84,7 +83,7 @@ def indexedstudent(studentid,classid):
         pass
     return redirect(url_for('index'))
 
-def s = session_init():
+def session_init():
     if 'uid' not in session:
         session['uid'] = uuid.uuid4()
     s = r.getSession(session['uid'])
