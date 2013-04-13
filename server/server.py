@@ -124,6 +124,7 @@ def validateclass(classid):
         return True
     return False
 
+@app.route('/lookupuser/')
 def lookup_student_name_and_location():
     data = []
     hostname = request.host
