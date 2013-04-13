@@ -34,3 +34,5 @@ class RedisModel(object):
             return l.index(studentinfo)
         except ValueError:
             return maxI+1
+            
+   

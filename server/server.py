@@ -24,7 +24,7 @@ def index():
         if False:
             # the user is in a queue
             # redirect them to the /with/class url for the queue they're in
-            return redirect('/with/%s' % escape(session['class']))
+            return redirect(url_for('/with/%s' % escape(session['class'])))
         else:
             # select class they need help for(they will just type in the number)
             # goto helpwith
