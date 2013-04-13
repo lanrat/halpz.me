@@ -4,7 +4,7 @@ import sys
 import os
 import time
 import itertools
-
+import socket
 
 class labrat():
   def __init__(self):
@@ -28,6 +28,7 @@ class labrat():
       self.func['findUser'] = self.conn.prepare('select * from users where login = $1')
       self.func['newUser'] = self.conn.prepare('insert into users (name,login) values ($2,$1) returning id')
       self.func['newSession'] = self.conn.prepare('insert into logins (import_id, host_id, user_id) values ($1,$2,$3)')
+      self.func['updateIP'] = self.conn.prepare('update hosts set ip = $2 where id = $1')
     except:
       print("DB connection failed")
       exit(1)
@@ -45,6 +46,13 @@ class labrat():
 
 
   def finger(self,import_id,server_id, server):
+    #code for updating the IP
+    try:
+      addr = socket.gethostbyname(server)
+      self.func['updateIP'](server_id,addr)
+    except:
+      pass
+
     #userless, uses current user and keys
     cmd = 'ssh -oConnectTimeout=01 -ostrictHostKeyChecking=no '+self.ssh_user+'@'+server+' finger -lp 2> /dev/null'
     #print(cmd)

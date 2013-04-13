@@ -12,7 +12,7 @@ def hello():
 
 @app.route("/<host>/user.json", methods=['GET'])
 def user(host):
-    return json.dumps(mod.getUserFromHost(host))
+    return json.dumps(mod.getUserFromIP(host))
 
 @app.route("/<user>.json", methods=['GET'])
 def finduser(user):
