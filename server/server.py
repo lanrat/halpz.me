@@ -124,8 +124,22 @@ def validateclass(classid):
         return True
     return False
 
-def lookup_student_name():
-    return requests.get('http://localhost:5001/' + request.host + '/user.json').json()
+def lookup_student_name_and_location():
+    data = []
+    hostname = request.host
+    #user's real name
+    data = requests.get('http://localhost:5001/' + hostname + '/user.json').json()[0]
+
+    #user's location
+    if hostname.count('-') is 2:
+        room, terminal = hostname.split('-')[1:3]
+    else:
+        room, terminal = None
+
+    data['room'] = room
+    data['terminal'] = terminal
+
+    return json.dumps(data)
 
 #achievement idea: over 1 million served(like mcdonalds)
 if __name__ == "__main__":
