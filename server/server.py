@@ -45,7 +45,7 @@ def helpwith(classid):
         if request.method == 'POST':
             r.setSession(s['id'],{'name':request.args['name']})
             r.studentAdd(classid,s['uid'])
-        return render_template('class.html')
+        return render_template('class.html',currStudent=s,classId=classid)
     return redirect(url_for('index'))
 
 @app.route('/helped/<studentid>/with/<classid>', methods=[ 'POST'])
