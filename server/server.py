@@ -45,9 +45,10 @@ def helpwith(classid):
     if validateclass(classid):
         if request.method == 'POST':
             dic = {}
+            print request.args
             if 'name' in request.args:
                 dic['name']=request.args['name']
-            if 'location' in request.args:
+            if 'student_location' in request.args:
                 dic['student_location']=request.args['student_location']
             if dic:
                 r.setSession(s['id'],dic)
