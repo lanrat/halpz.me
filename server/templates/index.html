@@ -1,4 +1,14 @@
 <!doctype html>
-<title>Welcome to Halpz.me</title>
-  <h1>I need help with..</h1>
-  <input type="text" name="classid">
+
+{% block head %}
+	<link rel="stylesheet" href="/static/index.css" />
+{% endblock %}
+
+{% block body %}
+	<title>Welcome to Halpz.me</title>
+	<h1>I need help with CSE</h1>
+	<form class="form-wrapper cf">
+	        <input type="text" placeholder="30.." required>
+	        <button type="submit">Halp!</button>
+	</form>   
+{% endblock %}
