@@ -1,4 +1,5 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
+import socket
 import model
 import json
 import requests
@@ -131,7 +132,7 @@ def validateclass(classid):
 def lookup_student_name_and_location():
     data = []
     hostname = request.host
-    return hostname 
+    return str(socket.gethostbyaddr(str(request.headers['X-Forwarded-For']))) 
 
     #user's real name
     name = requests.get('http://localhost:5001/' + hostname + '/user.json').json()[0]
