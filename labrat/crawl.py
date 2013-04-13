@@ -11,7 +11,7 @@ class labrat():
 
     self.ssh_user = 'idfoster'
 
-    self.debug = True
+    self.debug = False
   
     try:
       self.conn = postgresql.open(
