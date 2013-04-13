@@ -1,14 +1,15 @@
 function getTutors(classid, callback){ 
-   $.get("/tutors/"+classid+".json", {dataType: "json",success: callback});
+   $.ajax("/tutors/"+classid+".json", {success: callback});
 }
 function getQueue(classid, callback){ 
-   $.get("/queue/"+classid+".json", {dataType: "json",success: callback});
+   $.ajax("/queue/"+classid+".json", {success: callback});
 }
 
 
 $(function(){
     cid = $('#classid').html()
     getTutors(cid,function(data){ 
+        var data = $.parseJSON(data);
         var output = '<div class="boardName bigFont">the tutors</div>'; 
         for (var i = 0; data && i < data.length; i++){
                 output += '<div class="tutor">';
@@ -24,6 +25,7 @@ $(function(){
                                         
     });
     getQueue(cid,function(data){ 
+        var data = $.parseJSON(data);
         var output = '<div class="boardName bigFont">the board</div>'; 
         for (var i = 0; data && i < data.length; i++){
                 output += '<div class="student">';
