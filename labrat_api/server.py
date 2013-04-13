@@ -18,9 +18,17 @@ def user(host):
 def finduser(user):
     return json.dumps(mod.findUser(user))
 
+@app.route("/onlineusers.json", methods=['GET'])
+def onlineusers():
+    return json.dumps(mod.getOnlineUsers())
+
 @app.route("/topusers.json", methods=['GET'])
 def topusers():
     return json.dumps(mod.getTopUsers())
+
+@app.route("/toplabusers.json", methods=['GET'])
+def toplabusers():
+    return json.dumps(mod.getTopLabUsers())
 
 @app.route("/occupantcount.json", methods=['GET'])
 def occupantcount():
