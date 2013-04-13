@@ -65,11 +65,11 @@ class PgsqlModel(object):
           hosts.id = logins.host_id and
           users.id = logins.user_id and
           logins.import_id = %d"""
-      rows = self.query(q,(user,self.getLastImportID()))
-      if len(rows) > 0:
-        return rows
-      else:
-        return None
+    rows = self.query(q,(user,self.getLastImportID()))
+    if len(rows) > 0:
+      return rows
+    else:
+      return None
 
 
 
