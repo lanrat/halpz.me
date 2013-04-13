@@ -66,7 +66,7 @@ class RedisModel(object):
         
     def setSession(self,sid,sess):
         for k,v in sess.iteritems():
-            self.r.hset("session:"+str(sid), k,v)
+            self.r.hset("session:"+str(sid), str(k),str(v))
         return sess
     
     def addCourse(self,classid):
