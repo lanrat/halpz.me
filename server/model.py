@@ -34,7 +34,11 @@ class RedisModel(object):
             return l.index(studentinfo)
         except ValueError:
             return maxI+1
-            
+    
+    def getStudentList(self,classid,maxI=99):
+        l = self.r.lrange('queue:'+str(classid),0,maxI)
+        return l
+    
     def getSession(self,sid):
         s = self.r.hgetall("session:"+str(sid))
         if s:
@@ -42,6 +46,14 @@ class RedisModel(object):
         defaults = {'type':'student',
                     'name':'',
                     'tutor_classes':'',
-                    'student_location':''
+                    'student_location':'',
+                    'id':str(sid)
                     }
-        r.hset("session:"+str(sid), defaults)
+        for k,v in defaults.iteritems():
+            self.r.hset("session:"+str(sid), k,v)
+        return defaults
+        
+    def setSession(self,sid,sess):
+        for k,v in sess.iteritems():
+            self.r.hset("session:"+str(sid), k,v)
+        return sess
