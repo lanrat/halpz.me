@@ -1,9 +1,9 @@
 from flask import Flask
-import redis
+import model
 
 #initialize flask server and redis db
 app = Flask(__name__)
-r = redis.StrictRedis(host='ian.ucsd.edu', port=9000, db=0)
+r = model.RedisModel()
 
 #default
 @app.route('/')
