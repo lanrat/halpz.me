@@ -72,7 +72,7 @@ def queue(classid):
     #gets queue for class in json
     s = session_init()
     if validateclass(classid):
-        return json.dumps()
+        pass
     return redirect(url_for('index'))   
 
 @app.route('/index/<studentid>/in/<classid>', methods=[ 'POST'])
