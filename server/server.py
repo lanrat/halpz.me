@@ -3,6 +3,7 @@ import socket
 import model
 import json
 import requests
+import hosts
 import uuid
 
 #initialize flask server and redis db
@@ -10,6 +11,7 @@ app = Flask(__name__)
 #for the sessions
 app.secret_key = 'o\xb8~Q>%\xed\x90\xb9A\x84\x8e\xfa\xabD\x01\xf0\xc2#b\x07\xe9*H'
 r = model.RedisModel()
+h = hosts.HostFinder()
 
 
 
@@ -130,23 +132,12 @@ def validateclass(classid):
         return True
     return False
 
-def magic_shit(ip):
-    result = r.getHostname(ip)
-    if not result: 
-        ssh = paramiko.SSHClient()
-        ssh.connect(ip, username="yolo1", password="everyday")
-        ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("hostname")
-        result = ssh_stdin
-        r.addHostname(ip, result)
-    else:
-        return result
-
 @app.route('/lookupuser/')
 def lookup_student_name_and_location():
     data = []
     ip = request.headers['X-Forwarded-For']
 
-   # hostname = magic_shit(ip)
+   # hostname = h.find_hostname(ip)
     #user's real name
     name = requests.get('http://localhost:5001/' + hostname + '/user.json').json()[0]
     if name:
