@@ -6,7 +6,7 @@ class RedisModel(object):
         self.r = redis.StrictRedis(host=host,port=port,db=0)
         
     def studentAdd(self,classid,studentinfo):
-        self.r.ladd('queue:'+str(classid),studentinfo)
+        self.r.lpush('queue:'+str(classid),studentinfo)
         
     def getClassSize(self,classid):
         return self.r.llen('queue:'+str(classid))
@@ -18,4 +18,8 @@ class RedisModel(object):
     
     def removeFromPending(self,classid,studentinfo):
         self.r.srem('pending:'+str(classid),studentinfo)
+       
+    def pendingBackToClass(self,classid,studentinfo):
+        self.r.srem('pending:'+str(classid),studentinfo)
+        self.r.rpush('queue:'+str(classid),studentinfo)
 
