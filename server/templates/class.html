@@ -24,9 +24,9 @@
 		</div>
 		<div id="boardsAndTutors">
 			<div id="tutors">
-				<div id="boardName" class="bigFont">the tutors</div>
+				<div class="boardName bigFont">the tutors</div>
 				{% for tutor in currentTutors %}
-					<div id="tutor">
+					<div class="tutor">
 						<img src="{{ tutor.profPicUrl }}"/>
 						<div class="details">
 							<div class="bigFont">{{ tutor.firstName }}</div>
@@ -36,7 +36,7 @@
 				{% endfor %}
 			</div>
 			<div id="board">
-				<div id="boardName" class="bigFont">the board</div>
+				<div class="boardName bigFont">the board</div>
 				{% for student in queuedStudents %}
 					<div class="student">
 						<img src="{{ student.profPicUrl }}"/>

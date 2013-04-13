@@ -1,4 +1,46 @@
 <!doctype html>
-<!doctype html>
-<title>Tutor Home</title>
-<h1> Hi Tutor </h1>
+
+{% block head %}
+	<link rel="stylesheet" href="/static/main.css" />
+	<link rel="stylesheet" href="/static/index.css" />
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block body %}
+	<title>Welcome to Halpz.me</title>
+	<div id="header">
+		<div id="innerheader" class="bodyContainer">
+			<img src="/static/halpzme_logo.png" />
+			<div id="currentTutor">
+				<img src="/static/profpics/20.jpg"/>
+				<div class="details">
+					<div class="bigFont">Jack</div>
+					<div class="smallFont">until 5pm</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="bodyContainer bigFont">
+		<div id="servingAndStats" class="topMarginDouble">
+			<div id="stats">
+				<div class="boardName bigFont">stats </div>
+					<div class="details">
+						<div class="stopwatch">5:00 min</div>
+						<div class="today smallFont">helped 10 students today</div>
+						<div class="allTime smallFont">helped 9001 students total</div>
+					</div>
+				</div>
+				<div id="nowServing">
+					<div class="boardName bigFont">now serving</div>
+					<div class="student">
+						<img src="/static/profpics/4.jpg"/>
+						<div class="details">
+							<div class="bigFont">Lauren Ipsum</div>
+							<div class="smallFont">b230 terminal 42 (CSE 30)</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
