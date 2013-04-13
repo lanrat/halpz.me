@@ -128,7 +128,7 @@ def validateclass(classid):
 def lookup_student_name_and_location():
     data = []
     hostname = request.host
-    
+    return hostname  
     #user's real name
     name = requests.get('http://localhost:5001/' + hostname + '/user.json').json()[0]
     if name:
