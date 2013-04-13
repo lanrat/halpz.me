@@ -32,7 +32,7 @@ def toplabusers():
 
 @app.route("/occupantcount.json", methods=['GET'])
 def occupantcount():
-    return json.dumps(mod.getOccupantCount())
+    return json.dumps(mod.getNumberOfLabOccupants())
 
 @app.route("/labpie.json", methods=['GET'])
 def labpie():
