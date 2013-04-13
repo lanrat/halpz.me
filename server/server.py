@@ -84,17 +84,7 @@ def queue(classid):
     if validateclass(classid):
         l = getStudentList(classid)
         return json.dumps(l)
-    return redirect(url_for('index'))   
-
-@app.route('/index/<studentid>/in/<classid>', methods=[ 'POST'])
-def indexedstudent(studentid,classid):
-    #gets index of student in class queue
-    s = session_init()
-    classid = str(classid)
-    studentid = str(studentid)
-    if validatestudent(s,studentid) and validateclass(classid):
-        pass
-    return redirect(url_for('index'))
+    return json.dumps([])   
 
 @app.route('/courses.json', methods=[ 'GET'])
 def courses():
