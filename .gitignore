@@ -1,5 +1,5 @@
 *.py[cod]
-
+*.kate-swp
 # C extensions
 *.so
 
