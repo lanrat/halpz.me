@@ -46,9 +46,11 @@ def helpwith(classid):
     if validateclass(classid):
         if request.method == 'POST':
             dic = {}
-            dic['name']=request.args['name']
-            dic['studentlocation']=request.args['studentlocation']
+            dic['name']=request.form.get('name')
+            dic['studentlocation']=request.form.get('studentlocation')
             r.setSession(s['id'],dic)
+            for k,v in dic.iteritems():
+                s[k]=v
             r.studentAdd(classid,s['id'])
         return render_template('class.html',currStudent=s,classId=classid)
     return redirect(url_for('index'))
@@ -161,8 +163,6 @@ def lookup_student_name_and_location():
 
     data['room'] = room
     data['terminal'] = terminal
-
-    return json.dumps(data)
 
 #achievement idea: over 1 million served(like mcdonalds)
 if __name__ == "__main__":
