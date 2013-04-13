@@ -1,4 +1,5 @@
 import redis
+import random
 
 class RedisModel(object):
     
@@ -56,7 +57,8 @@ class RedisModel(object):
                     'name':'',
                     'tutor_classes':'',
                     'student_location':'',
-                    'id':str(sid)
+                    'id':str(sid),
+                    'profilePicUrl':'/static/profpics/'+str(random.randint(1,22))+'.jpg',
                     }
         for k,v in defaults.iteritems():
             self.r.hset("session:"+str(sid), k,v)
@@ -72,3 +74,9 @@ class RedisModel(object):
     
     def getCourses(self):
         return list(self.r.smembers("courses"))
+        
+    def addTutor(self, classid, tutorid):
+        self.r.sadd("tutors:"+str(classid),tutorid)
+        
+    def getTutors(self,classid):
+        self.r.smembers("tutors:"+str(classid))
