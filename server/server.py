@@ -3,7 +3,7 @@ import socket
 import model
 import json
 import requests
-import hosts
+#import hosts
 import uuid
 
 #initialize flask server and redis db
@@ -11,7 +11,7 @@ app = Flask(__name__)
 #for the sessions
 app.secret_key = 'o\xb8~Q>%\xed\x90\xb9A\x84\x8e\xfa\xabD\x01\xf0\xc2#b\x07\xe9*H'
 r = model.RedisModel()
-h = hosts.HostFinder()
+#h = hosts.HostFinder()
 
 
 
