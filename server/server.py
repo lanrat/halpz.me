@@ -1,4 +1,5 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
+from paramiko import SSHClient
 import socket
 import model
 import json
@@ -130,16 +131,38 @@ def validateclass(classid):
         return True
     return False
 
-"""def magic_shit(ip):
-    result = redis_lookup(ip)
-    #if you didn't find it in cache 
+def magic_shit(ip):
+    result = r.getHostname(ip)
     if not result: 
-        actually do the ssh bullshit, then put it in the cache
-        result = bull
+        ssh = paramiko.SSHClient()
+        ssh.connect(ip, username="yolo1", password="everyday")
+        ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("hostname")
+        result = ssh_stdin
+        r.addHostname(ip, result)
     else:
         return result
-"""
 
+@app.route('/lookupuser/')
+def lookup_student_name_and_location():
+    data = []
+    ip = request.headers['X-Forwarded-For'])
+
+   # hostname = magic_shit(ip)
+    #user's real name
+    name = requests.get('http://localhost:5001/' + hostname + '/user.json').json()[0]
+    if name:
+        data['name'] = name
+    else:
+        data['name'] = ""
+
+    #user's location
+    if hostname.count('-') is 2:
+        room, terminal = hostname.split('-')[1:3]
+    else:
+        room, terminal = ""
+
+    data['room'] = room
+    data['terminal'] = terminal
 
 #achievement idea: over 1 million served(like mcdonalds)
 if __name__ == "__main__":

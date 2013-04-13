@@ -80,3 +80,10 @@ class RedisModel(object):
         
     def getTutors(self,classid):
         self.r.smembers("tutors:"+str(classid))
+
+    def addHostname(self, ip, hostname):
+        self.r.set(str(ip), hostname)
+
+    def getHostname(self, ip):
+        self.r.get(str(ip))
+
