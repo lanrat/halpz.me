@@ -19,24 +19,24 @@
 	</div>
 	<div class="bodyContainer bigFont">
 		<div id="currStudent">
-			<img src="{{ currStudent.profPicUrl }}"/>
+			<img src="{{ currStudent.profilePicUrl }}"/>
 			<div class="details">
-				<div class="bigFont">{{ currStudent.fullName }}</div>
-				<div class="smallFont">{{ currStudent.location }}</div>
+				<div class="bigFont">{{ currStudent.name }}</div>
+				<div class="smallFont">{{ currStudent.student_location }}</div>
 			</div>
 		</div>
 		<div id="boardsAndTutors">
 			
 			<div id="board">
 				<div class="boardName bigFont">the board</div>
-				{% for student in queuedStudents %}
+				<!--{ for student in queuedStudents %}
 					<div class="student">
-						<img src="{{ student.profPicUrl }}"/>
+						<img src="{ student.profPicUrl }}"/>
 						<div class="details">
-							<div class="bigFont">{{ student.fullName }}</div>
+							<div class="bigFont">{ student.fullName }}</div>
 						</div>
 					</div>
-				{% endfor %}
+				{ endfor %}-->
 			</div>
 		</div>
 	</div>

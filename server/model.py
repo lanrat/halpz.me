@@ -58,7 +58,7 @@ class RedisModel(object):
                     'tutor_classes':'',
                     'student_location':'',
                     'id':str(sid),
-                    'profilePicUrl':'/static/profpics/'+str(random.randint(1,22))+'.jpg',
+                    'profilePicUrl':'/static/profpics/'+str(random.randint(0,22))+'.jpg',
                     }
         for k,v in defaults.iteritems():
             self.r.hset("session:"+str(sid), k,v)
