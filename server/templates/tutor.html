@@ -27,30 +27,40 @@
 	<div class="bodyContainer bigFont">
 		<div id="servingAndStats" class="topMarginDouble">
 			<div id="stats">
-				<div class="boardName bigFont">stats </div>
-					<div class="details">
-						<div class="stopwatch">0:00 min</div>
-						<div class="today smallFont">helped {{ currTutor.todayCount }} students today</div>
-						<div class="allTime smallFont">helped {{ currTutor.allTimeCount }} students total</div>
-					</div>
+				<div class="boardName bigFont">stats</div>
+				<div class="details">
+					<div class="stopwatch">0:00 min</div>
 				</div>
-				<div id="nowServing">
-					<div class="boardName bigFont">now serving</div>
-					<div class="student">
-						<img src=""/>
-						<div class="details">
-							<div class="bigFont">Bob</div>
-							<div class="smallFont">Here (CSE 127)</div>
-						</div>
+			</div>
+			<div id="nowServing">
+				<div class="boardName bigFont">now serving</div>
+				<div class="student">
+					<img src=""/>
+					<div class="details">
+						<div class="bigFont">Bob</div>
+						<div class="smallFont">Here (CSE 127)</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div id="queues">
-			
-				<div class="addNewClass">
-					add new class
-				</div>
+			<ul id="addedQueues">
+			</ul>
+			<div class="addNewClass">
+				<div class="text">add new class</div>
+			</div>
 		</div>
+	</div>
+	<div id="addClassDialog" class="dialog hidden">
+		<form id="addClassForm" class="form-wrapper cf bigFont">
+			<input id="addedClassName" type="text" placeholder="What class?" required>
+			<button type="submit">add</button>
+		</form>
+	</div>
+	<div id="startTutoringDialog" class="dialog hidden">
+		<form id="startTutoringForm" class="form-wrapper cf bigFont">
+			<input id="tutoringEndTime" type="text" placeholder="Until when?" required>
+			<button type="submit">start</button>
+		</form>
 	</div>
 {% endblock %}
