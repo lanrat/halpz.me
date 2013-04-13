@@ -190,6 +190,15 @@ body {
 #queues .queue {
 }
 
+#tutorLink {
+	margin-left:10px;
+	margin-top:10px;
+}
+
+#tutorLink a {
+	text-decoration: none;
+}
+
 .addNewClass {
 	width:240px;
 	height:260px;
