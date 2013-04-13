@@ -89,6 +89,19 @@ def queue(classid):
 @app.route('/courses.json', methods=[ 'GET'])
 def courses():
     return json.dumps(r.getCourses())
+
+@app.route('/tutors/<classid>.json',methods=['GET'])
+def tutors(classid):
+    return json.dumps(r.getTutors(classid))
+    
+@app.route('/addtutor/<classid>',methods=['POST'])
+def tutor(classid):
+    s = session_init()
+    classid = str(classid)
+    if validateclass(classid):
+        json.dumps(r.setTutor(classid,s['id']))
+        return json.dumps([True])
+    return json.dumps([])
     
 def session_init():
     if 'uid' not in session:
