@@ -1,4 +1,5 @@
 import psycopg2
+import psycopg2.extras
 
 class PgsqlModel(object):
   def __init__(self):
@@ -9,7 +10,7 @@ class PgsqlModel(object):
         print "I am unable to connect to the database"
 
   def query(self,string,args=None):
-    cur = self.conn.cursor()
+    cur = self.conn.cursor(cursor_factory = psycopg2.extras.RealDictCursor)
     if args:
       cur.execute(string,args)
     else:
@@ -28,7 +29,7 @@ class PgsqlModel(object):
           order by timestamp desc
           limit 1"""
       rows = self.query(q)
-      self.lastID = rows[0][0]
+      self.lastID = rows[0]['id']
     return self.lastID
 
 
@@ -47,7 +48,7 @@ class PgsqlModel(object):
             ;"""
       rows = self.query(q,(hostname,str(self.getLastImportID())))
       if len(rows) > 0:
-        return [row[0] for row in rows]
+        return rows
       else:
         return None
 
@@ -64,13 +65,17 @@ class PgsqlModel(object):
           users.login = %s and
           hosts.id = logins.host_id and
           users.id = logins.user_id and
-          logins.import_id = %d"""
-    rows = self.query(q,(user,self.getLastImportID()))
+          logins.import_id = %s"""
+    rows = self.query(q,(user,str(self.getLastImportID())))
     if len(rows) > 0:
       return rows
     else:
       return None
 
+  def getOnlineUsers(self):
+    q = "select count(*) from logins where import_id = %s"
+    result = this.query(q,(str(self.getLastImportID())))
+    return result[0]['count']
 
-
+  #def getTopLabUsers
 

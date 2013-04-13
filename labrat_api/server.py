@@ -14,6 +14,10 @@ def hello():
 def user(host):
     return json.dumps(mod.getUserFromHost(host))
 
+@app.route("/<user>.json", methods=['GET'])
+def finduser(user):
+    return json.dumps(mod.findUser(user))
+
 @app.route("/topusers.json", methods=['GET'])
 def topusers():
     return json.dumps(mod.getTopUsers())
