@@ -13,7 +13,9 @@ class RedisModel(object):
         
     def popStudent(self,classid):
         studentinfo = self.r.rpop('queue:'+str(classid))
-        self.r.sadd('pending',studentinfo)
+        self.r.sadd('pending:'+str(classid),studentinfo)
         return studentinfo
     
+    def removeFromPending(self,classid,studentinfo):
+        self.r.srem('pending:'+str(classid),studentinfo)
 
