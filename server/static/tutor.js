@@ -4,16 +4,7 @@ function getQueue(classid, callback){
 
 $(function() {
     
-    $('.helpButton').click(function(c){
-        var info = c.target.dataset["course"];
-        $.ajax{'/helpnext/'+info,{dataType:"json",success:function(d){
-            $('.currLocation').html( d.studentlocation);
-            $('.currStudent').html(d.name);
-            
-            
-        }
-        
-    });
+   
     
     $('#addClassForm').submit(function(){
         $('#addClassDialog').addClass('hidden');
@@ -30,7 +21,16 @@ $(function() {
                 output += '</div></li>';
             }
             $("#addedQueues").append(output);
+             $('.helpButton').click(function(c){
+            var info = c.target.dataset["course"];
+            $.ajax{'/helpnext/'+info,{dataType:"json",success:function(d){
+                $('.currLocation').html( d.studentlocation);
+                $('.currStudent').html(d.name);
+                
+                
+            }
             
+        });
         });
         return false;
     });
