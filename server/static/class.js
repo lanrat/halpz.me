@@ -7,8 +7,6 @@ function getQueue(classid, callback){
 
 
 $(function(){
-    $('.former').show();
-    $('.photoname').hide();
     cid = $('#classid').html()
     getTutors(cid,function(data){ 
         var data = $.parseJSON(data);
@@ -40,12 +38,6 @@ $(function(){
 
         $("#board").html(output);                              
          
-        if(data){
-            $('.former').hide();
-            $('.photoname').show();
-        } else {
-            $('.former').show();
-            $('.photoname').hide();
-        }
+      
     });
 });

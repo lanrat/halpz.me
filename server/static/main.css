@@ -118,6 +118,17 @@
 	font-size: 115%;
 }
 
+#board {
+    width:450px;
+    float:left;
+    
+}
+#tutors {
+    width:450px;
+    float:left;
+    
+}
+
 .tutor img {
 	float:left;
 	width:60px;
