@@ -1,5 +1,4 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
-from paramiko import SSHClient
 import socket
 import model
 import json
