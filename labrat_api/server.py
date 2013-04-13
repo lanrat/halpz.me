@@ -15,27 +15,27 @@ def user(host):
     return json.dumps(mod.getUserFromHost(host))
 
 @app.route("topusers.json", methods=['GET'])
-def user():
+def topusers():
     return json.dumps(mod.getTopUsers())
 
 @app.route("occupantcount.json", methods=['GET'])
-def user():
+def occupantcount():
     return json.dumps(mod.getOccupantCount())
 
 @app.route("labpie.json", methods=['GET'])
-def user():
+def labpie():
     return json.dumps(mod.getLabPie())
 
 @app.route("labusage.json", methods=['GET'])
-def user():
+def labusage():
     return json.dumps(mod.getLabUsage())
 
 @app.route("totalhosts.json", methods=['GET'])
-def user():
+def totalhosts():
     return json.dumps(mod.getTotalHosts())
 
 @app.route("onlinehistory.json", methods=['GET'])
-def user():
+def onlinehistory():
     return json.dumps(mod.getOnlineHistory())
 
 if __name__ == "__main__":
