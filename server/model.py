@@ -46,8 +46,8 @@ class RedisModel(object):
         output=[]
         for sid in l:
             d = self.r.hgetall("session:"+str(sid))
-            output = d  
-        return l
+            output.append(d)
+        return output
     
     def getSession(self,sid):
         s = self.r.hgetall("session:"+str(sid))
@@ -55,8 +55,8 @@ class RedisModel(object):
             return s
         defaults = {'type':'student',
                     'name':'',
-                    'tutor_classes':'',
-                    'student_location':'',
+                    'tutorclasses':'',
+                    'studentlocation':'',
                     'id':str(sid),
                     'profilePicUrl':'/static/profpics/'+str(random.randint(0,22))+'.jpg',
                     }
@@ -66,7 +66,7 @@ class RedisModel(object):
         
     def setSession(self,sid,sess):
         for k,v in sess.iteritems():
-            self.r.hset("session:"+str(sid), k,v)
+            self.r.hset("session:"+str(sid), str(k),str(v))
         return sess
     
     def addCourse(self,classid):
@@ -80,3 +80,10 @@ class RedisModel(object):
         
     def getTutors(self,classid):
         self.r.smembers("tutors:"+str(classid))
+
+    def addHostname(self, ip, hostname):
+        self.r.set(str(ip), hostname)
+
+    def getHostname(self, ip):
+        self.r.get(str(ip))
+

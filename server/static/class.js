@@ -1,40 +1,43 @@
 function getTutors(classid, callback){ 
-   $.get("/tutors/"+classid+".json", {success: callback});
+   $.ajax("/tutors/"+classid+".json", {success: callback});
 }
 function getQueue(classid, callback){ 
-   $.get("/queue/"+classid+".json", {success: callback});
+   $.ajax("/queue/"+classid+".json", {success: callback});
 }
 
 
 $(function(){
-    cid = $('#classid').html
+    cid = $('#classid').html()
     getTutors(cid,function(data){ 
+        var data = $.parseJSON(data);
         var output = '<div class="boardName bigFont">the tutors</div>'; 
-        for (var i = 0; i < data.length; i++){
+        for (var i = 0; data && i < data.length; i++){
                 output += '<div class="tutor">';
-                output += '<img src =' + data[i].profilePicUrl + '/>';
+                output += '<img src ="' + data[i]['profilePicUrl'] + '"/>';
                 output += '<div class="details">';
-                output += '<div class="bigFont">' + data[i].name + '</div>';
-                output += '<div class="smallFont">until '+ data[i].endHours + '</div>';
+                output += '<div class="bigFont">' + data[i]['name'] + '</div>';
+                output += '<div class="smallFont">until '+ data[i]['endHours'] + '</div>';
                 output += '</div>';
                 output += '</div>';
         }
 
-        $("#tutors").html= output;                              
+        $("#tutors").html(output);                              
                                         
     });
     getQueue(cid,function(data){ 
+        var data = $.parseJSON(data);
         var output = '<div class="boardName bigFont">the board</div>'; 
-        for (var i = 0; i < data.length; i++){
+        for (var i = 0; data && i < data.length; i++){
                 output += '<div class="student">';
-                output += '<img src =' + data[i].profilePicUrl + '/>';
+                output += '<img src ="' + data[i]['profilePicUrl'] + '"/>';
                 output += '<div class="details">';
-                output += '<div class="bigFont">' + data[i].name + '</div>';
+                output += '<div class="bigFont">' + data[i]['name'] + '</div>';
                 output += '</div>';
                 output += '</div>';
         }
 
-        $("#tutors").html= output;                              
-                                        
+        $("#board").html(output);                              
+         
+      
     });
 });

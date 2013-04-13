@@ -13,22 +13,27 @@
 	<title>Welcome to Halpz.me</title>
 	<div id="header">
 		<div id="innerheader" class="bodyContainer">
-			<img src="/static/halpzme_logo.png" />
+			<a href="/"><img src="/static/halpzme_logo.png" /></a>
 			<div id="classid">{{ classId }}</div>
 		</div>
 	</div>
 	<div class="bodyContainer bigFont">
 		<div id="currStudent">
+		<div class="photoname">
 			<img src="{{ currStudent.profilePicUrl }}"/>
 			<div class="details">
 				<div class="bigFont">{{ currStudent.name }}</div>
-				<div class="smallFont">{{ currStudent.student_location }}</div>
+				<div class="smallFont">{{ currStudent.studentlocation }}</div>
 			</div>
-			<form id="helpnameform" class="form-wrapper cf topMarginSingle">
-				<input id="name" type="text" placeholder="name" required>
-				<input id="location" type="text" placeholder="location" required>
+			</div>
+			<span style="margin:10px;clear:both;"></span>
+			<div class="former">
+			<form action="/with/{{classId}}" id="helpnameform" class="form-wrapper cf topMarginSingle" method="post">
+				<input name="name" id="name" type="text" placeholder="name" required>
+				<input name="studentlocation" id="studentlocation" type="text" placeholder="location" required>
 				<button type="submit">halp!</button>
 			</form>
+			</div>
 		</div>
 		<div id="boardsAndTutors">
 			

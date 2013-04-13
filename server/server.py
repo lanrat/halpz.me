@@ -1,7 +1,9 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
+import socket
 import model
 import json
 import requests
+#import hosts
 import uuid
 
 #initialize flask server and redis db
@@ -9,6 +11,7 @@ app = Flask(__name__)
 #for the sessions
 app.secret_key = 'o\xb8~Q>%\xed\x90\xb9A\x84\x8e\xfa\xabD\x01\xf0\xc2#b\x07\xe9*H'
 r = model.RedisModel()
+#h = hosts.HostFinder()
 
 
 
@@ -16,9 +19,11 @@ r = model.RedisModel()
 @app.route('/')
 def index():
     s = session_init()
+    if s['type']=='tutor':
+        return render_template('tutor.html', currTutor=s)
     return render_template('index.html')
 
-@app.route('/tutor/', methods=['POST'])
+@app.route('/tutor/', methods=['GET'])
 def tutorhome():
     #changes session to tutor
     s = session_init()
@@ -26,7 +31,7 @@ def tutorhome():
     r.setSession(s['id'],s)
     return redirect(url_for('index'))
 
-@app.route('/student/', methods=[ 'POST'])
+@app.route('/student/', methods=[ 'GET'])
 def studenthome():
     #changes session to student
     s = session_init()
@@ -43,8 +48,13 @@ def helpwith(classid):
     classid = str(classid)
     if validateclass(classid):
         if request.method == 'POST':
-            r.setSession(s['id'],{'name':request.args['name']})
-            r.studentAdd(classid,s['uid'])
+            dic = {}
+            dic['name']=request.form.get('name')
+            dic['studentlocation']=request.form.get('studentlocation')
+            r.setSession(s['id'],dic)
+            for k,v in dic.iteritems():
+                s[k]=v
+            r.studentAdd(classid,s['id'])
         return render_template('class.html',currStudent=s,classId=classid)
     return redirect(url_for('index'))
 
@@ -127,8 +137,9 @@ def validateclass(classid):
 @app.route('/lookupuser/')
 def lookup_student_name_and_location():
     data = []
-    hostname = request.host
-    
+    ip = request.headers['X-Forwarded-For']
+
+   # hostname = h.find_hostname(ip)
     #user's real name
     name = requests.get('http://localhost:5001/' + hostname + '/user.json').json()[0]
     if name:
@@ -144,8 +155,6 @@ def lookup_student_name_and_location():
 
     data['room'] = room
     data['terminal'] = terminal
-
-    return json.dumps(data)
 
 #achievement idea: over 1 million served(like mcdonalds)
 if __name__ == "__main__":

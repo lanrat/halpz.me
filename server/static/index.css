@@ -28,6 +28,22 @@
     border: 0;
     background: #eee;  
 }
+
+#helpnameform.form-wrapper input {
+	width: 300px;
+	/*float:none;*/
+}
+
+#helpnameform.form-wrapper {
+    width: 801px;
+	margin-left:-2px;
+	padding-top:20px;
+	clear:left;
+}
+
+#helpnameform.form-wrapper #location {
+	border-left: 1px #BDBDBD solid;
+}
  
 .form-wrapper input:focus {
     outline: 0;
