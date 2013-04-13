@@ -10,7 +10,7 @@ $(function(){
     cid = $('#classid').html
     getTutors(cid,function(data){ 
         var output = '<div class="boardName bigFont">the tutors</div>'; 
-        for (var i = 0; i < data.length; i++){
+        for (var i = 0; data && i < data.length; i++){
                 output += '<div class="tutor">';
                 output += '<img src =' + data[i].profilePicUrl + '/>';
                 output += '<div class="details">';
@@ -25,7 +25,7 @@ $(function(){
     });
     getQueue(cid,function(data){ 
         var output = '<div class="boardName bigFont">the board</div>'; 
-        for (var i = 0; i < data.length; i++){
+        for (var i = 0; data && i < data.length; i++){
                 output += '<div class="student">';
                 output += '<img src =' + data[i].profilePicUrl + '/>';
                 output += '<div class="details">';
