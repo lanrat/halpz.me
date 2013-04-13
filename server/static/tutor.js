@@ -20,7 +20,7 @@ $(function() {
             }
             $("#addedQueues").append(output);
             
-        }
+        });
         return false;
     });
     
