@@ -1,4 +1,5 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
+from paramiko import SSHClient
 import socket
 import model
 import json
@@ -128,15 +129,17 @@ def validateclass(classid):
         return True
     return False
 
-"""def magic_shit(ip):
-    result = redis_lookup(ip)
-    #if you didn't find it in cache 
+def magic_shit(ip):
+    result = r.getHostname(ip)
     if not result: 
-        actually do the ssh bullshit, then put it in the cache
-        result = bull
+        ssh = paramiko.SSHClient()
+        ssh.connect(ip, username="yolo1", password="everyday")
+        ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("hostname")
+        result = ssh_stdin
+        r.addHostname(ip, result)
     else:
         return result
-"""
+
 @app.route('/lookupuser/')
 def lookup_student_name_and_location():
     data = []
