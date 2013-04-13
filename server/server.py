@@ -124,6 +124,7 @@ def validateclass(classid):
         return True
     return False
 
+@app.route('/lookupuser/')
 def lookup_student_name_and_location():
     data = []
     hostname = request.host
@@ -133,13 +134,13 @@ def lookup_student_name_and_location():
     if name:
         data['name'] = name
     else:
-        data['name'] = None
+        data['name'] = ""
 
     #user's location
     if hostname.count('-') is 2:
         room, terminal = hostname.split('-')[1:3]
     else:
-        room, terminal = None
+        room, terminal = ""
 
     data['room'] = room
     data['terminal'] = terminal
