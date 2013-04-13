@@ -1,4 +1,10 @@
 $(function() {
+    $('#inputform').submit(function(){
+        var course = $('#tags').val();
+        location.href = '/with/'+course
+        
+    });
+    
     var availableTags = [];
     function split( val ) {
       return val.split( /,\s*/ );
