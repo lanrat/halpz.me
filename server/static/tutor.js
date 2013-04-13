@@ -8,7 +8,7 @@ $(function() {
         var info = c.target['data-course'];
         console.log(info);
         
-    }
+    });
     
     $('#addClassForm').submit(function(){
         $('#addClassDialog').addClass('hidden');
