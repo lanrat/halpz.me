@@ -7,20 +7,14 @@ app = Flask(__name__)
 app.secret_key = 'o\xb8~Q>%\xed\x90\xb9A\x84\x8e\xfa\xabD\x01\xf0\xc2#b\x07\xe9*H'
 r = model.RedisModel()
 
-def init_session():
-    # just assume the current user is a student initially
-    if not 'type' in session:
-        session['type'] = 'student'
-        session['name'] = ''
-        session['tutor_classes'] = []
-        session['student_location'] = None
+
 
 #default
 @app.route('/')
 def index():
-    init_session()
+    sess = r.getSession(session['_id'])
     #FOR STUDENTS
-    if session['type'] == 'student':
+    if sess['type'] == 'student':
         if False:
             # the user is in a queue
             # redirect them to the /with/class url for the queue they're in
