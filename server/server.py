@@ -122,9 +122,10 @@ def session_init(request):
     if not s['studentlocation']:
         ip = request.headers['X-Forwarded-For']
         data = lookup_user_info(ip)
-        s['studentlocation'] = data['location']
-        s['name'] = data['name']
-        r.setSession(s['id'],{'studentlocation': s['studentlocation'], 'name': s['name']})
+        if data:
+            s['studentlocation'] = data['location']
+            s['name'] = data['name']
+            r.setSession(s['id'],{'studentlocation': s['studentlocation'], 'name': s['name']})
     return s
     
 def validatestudent(session,studentid):

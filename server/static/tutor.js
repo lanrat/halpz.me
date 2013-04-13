@@ -4,11 +4,11 @@ function getQueue(classid, callback){
 
 $(function() {
     
-    $('#inputform').submit(function(){
-        var course = $('#tags').val();
+    $('#addClassForm').submit(function(){
+        var course = $('#addedClassName').val();
         getQueue(course,function(data){
             var data = $.parseJSON(data);
-            var output = '<div class="boardName bigFont">'+course+' ('+data.length+' waiting students)/</div>'; 
+            var output = '<li><div class="boardName bigFont">'+course+' ('+data.length+' waiting students)/</div>'; 
             for (var i = 0; data && i < data.length && i < 3; i++){
                 output += '<div class="vals">';
                 output += '<img src ="' + data[i]['profilePicUrl'] + '"/>';
@@ -16,15 +16,19 @@ $(function() {
                 output += '<div class="bigFont">' + data[i]['name'] + '</div>';
                 output += '<div class="smallFont">until '+ data[i]['endHours'] + '</div>';
                 output += '</div>';
-                output += '</div>';
+                output += '</div></li>';
             }
-            $(".next").html();
-            $(".next").html(output);
+            $("#addedQueues").append(output);
             
         }
         return false;
     });
     
+    $('.addNewClass').click(function(){
+        $('#addClassDialog').removeClass('hidden');
+        
+    }
+        
     var availableTags = [];
     function split( val ) {
       return val.split( /,\s*/ );
@@ -34,7 +38,7 @@ $(function() {
     }
     $.ajax('/courses.json',{dataType: "json","success":function(data){
         availableTags = data;
-        $('#tags').autocomplete({
+        $('#addedClassName').autocomplete({
             lookup: availableTags
         });
     }});
