@@ -4,6 +4,8 @@ function getQueue(classid, callback){
 
 $(function() {
     
+    
+    
     $('#addClassForm').submit(function(){
         $('#addClassDialog').addClass('hidden');
         var course = $('#addedClassName').val();
@@ -11,11 +13,10 @@ $(function() {
             var data = $.parseJSON(data);
             var output = '<li><div class="boardName bigFont">'+course+' ('+data.length+' waiting students)</div>'; 
             for (var i = 0; data && i < data.length && i < 3; i++){
-                output += '<div class="vals">';
+                output += '<div class="student">';
                 output += '<img src ="' + data[i]['profilePicUrl'] + '"/>';
                 output += '<div class="details">';
                 output += '<div class="bigFont">' + data[i]['name'] + '</div>';
-                output += '<div class="smallFont">until '+ data[i]['endHours'] + '</div>';
                 output += '</div>';
                 output += '</div></li>';
             }
