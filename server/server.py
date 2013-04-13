@@ -40,7 +40,7 @@ def helpwith(classid):
     pass
 
 @app.route('/helped/<studentid>/with/<classid>', methods=[ 'POST'])
-def helped(student,classid):
+def helped(studentid,classid):
     #adds student to queue
     pass
 
@@ -50,7 +50,7 @@ def helpnext(classid):
     pass
 
 @app.route('/cannothelp/<studentid>/with/<classid>', methods=[ 'POST'])
-def cannothelp(student,classid):
+def cannothelp(studentid,classid):
     #puts student back on beginning of queue
     pass
  
@@ -60,11 +60,16 @@ def queue(classid):
     pass   
 
 @app.route('/index/<studentid>/in/<classid>', methods=[ 'POST'])
-def indexedstudent(student,classid):
+def indexedstudent(studentid,classid):
     #gets index of student in class queue
     pass
 
- 
+
+def validatestudent(session,studentid):
+    pass
+
+def validateclass(classid):
+    pass
     
 #achievement idea: over 1 million served(like mcdonalds)
 if __name__ == "__main__":
