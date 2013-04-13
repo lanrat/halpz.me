@@ -20,7 +20,7 @@ $(function(){
                 output += '</div>';
         }
 
-        $("#tutors").html= output;                              
+        $("#tutors").html(output);                              
                                         
     });
     getQueue(cid,function(data){ 
@@ -34,7 +34,7 @@ $(function(){
                 output += '</div>';
         }
 
-        $("#tutors").html= output;                              
+        $("#tutors").html(output);                              
                                         
     });
 });
