@@ -159,3 +159,42 @@ body {
 	font-family: 'Ubuntu', sans-serif;
 	color:#5E2F01;
 }
+
+.dialog {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 800px;
+	background: white;
+	margin-left: -400px; /* negative half of width */
+	height: 150px;
+	margin-top: -100px; /* negative half of height */
+	padding-top: 75px;
+	border: 1px #5E2F01 solid;
+}
+
+.dialog .form-wrapper {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#queues .queue {
+}
+
+.addNewClass {
+	width:240px;
+	height:260px;
+	border: 1px #5E2F01 solid;
+}
+
+.addNewClass .text {
+	margin-top: 110px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.hidden {
+	visibility:hidden;
+	display:none;
+}
