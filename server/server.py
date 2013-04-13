@@ -45,10 +45,11 @@ def helpwith(classid):
     if validateclass(classid):
         if request.method == 'POST':
             dic = {}
-
             dic['name']=request.form.get('name')
             dic['studentlocation']=request.form.get('studentlocation')
             r.setSession(s['id'],dic)
+            for k,v in dic.iteritems():
+                s[k]=v
             r.studentAdd(classid,s['id'])
         return render_template('class.html',currStudent=s,classId=classid)
     return redirect(url_for('index'))

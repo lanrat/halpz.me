@@ -24,7 +24,7 @@
 				<div class="bigFont">{{ currStudent.name }}</div>
 				<div class="smallFont">{{ currStudent.studentlocation }}</div>
 			</div>
-			<form id="helpnameform" class="form-wrapper cf topMarginSingle" method="post">
+			<form action="/with/{{classid}}" id="helpnameform" class="form-wrapper cf topMarginSingle" method="post">
 				<input id="name" type="text" placeholder="name" required>
 				<input id="studentlocation" type="text" placeholder="location" required>
 				<button type="submit">halp!</button>
