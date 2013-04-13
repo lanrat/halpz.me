@@ -7,6 +7,7 @@ function getQueue(classid, callback){
 
 
 $(function(){
+    
     cid = $('#classid').html()
     getTutors(cid,function(data){ 
         var data = $.parseJSON(data);
