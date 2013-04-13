@@ -22,7 +22,7 @@ def tutorhome():
     #changes session to tutor
     s = session_init()
     s['type'] = 'tutor'
-    r.setSession(s)
+    r.setSession(s['id'],s)
     return redirect(url_for('index'))
 
 @app.route('/student/', methods=[ 'POST'])
@@ -30,7 +30,7 @@ def studenthome():
     #changes session to student
     s = session_init()
     s['type'] = 'student'
-    r.setSession(s)
+    r.setSession(s['id'],s)
     return redirect(url_for('index'))
 
 @app.route('/with/<classid>', methods=['POST', 'GET'])
@@ -39,8 +39,10 @@ def helpwith(classid):
     # show an ask for help button with autofill name and location field based on Ian's API
     #post - student requests tutor for class
     s = session_init()
+    classid = str(classid)
     if validateclass(classid):
         if request.method == 'POST':
+            r.setSession(s['id'],{'name':request['name']})
             r.studentAdd(classid,s['uid'])
         return render_template('class.html')
     return redirect(url_for('index'))
@@ -49,6 +51,7 @@ def helpwith(classid):
 def helped(studentid,classid):
     #adds student to queue
     s = session_init()
+    classid = str(classid)
     if validatestudent(s,studentid) and validateclass(classid):
         r.removeFromPending(classid,studentid)
     return redirect(url_for('index'))
@@ -57,6 +60,7 @@ def helped(studentid,classid):
 def helpnext(classid):
     #helps next student in classid
     s = session_init()
+    classid = str(classid)
     if validateclass(classid):
         student = r.popStudent(classid)
         return json.dumps(student)
@@ -66,6 +70,8 @@ def helpnext(classid):
 def cannothelp(studentid,classid):
     #puts student back on beginning of queue
     s = session_init()
+    classid = str(classid)
+    studentid = str(studentid)
     if validatestudent(s,studentid) and validateclass(classid):
         r.pendingBackToClass(classid,studentid)
     return redirect(url_for('index'))
@@ -74,6 +80,7 @@ def cannothelp(studentid,classid):
 def queue(classid):
     #gets queue for class in json
     s = session_init()
+    classid = str(classid)
     if validateclass(classid):
         l = getStudentList(classid)
         return json.dumps(l)
@@ -83,10 +90,16 @@ def queue(classid):
 def indexedstudent(studentid,classid):
     #gets index of student in class queue
     s = session_init()
+    classid = str(classid)
+    studentid = str(studentid)
     if validatestudent(s,studentid) and validateclass(classid):
         pass
     return redirect(url_for('index'))
 
+@app.route('/courses.json', methods=[ 'GET'])
+def courses():
+    return json.dumps(r.getCourses())
+    
 def session_init():
     if 'uid' not in session:
         session['uid'] = uuid.uuid4()
@@ -96,13 +109,14 @@ def session_init():
 def validatestudent(session,studentid):
     #first check if session matches student or session is a tutor
     #then make sure student is valid format
-    if isinstance(studentid,str) and len(studentid)<50 and (session['type']=='tutor' or session['id']==studentid):
+    if isinstance(studentid,str) and len(studentid)<500 and (session['type']=='tutor' or session['id']==studentid):
         return True
     return False
 
 def validateclass(classid):
     #make sure class if valid format
-    if isinstance(classid,str) and len(classid)<50 and classid[:3]=='cse':
+    if isinstance(classid,str) and len(classid)<7 and classid[:3]=='cse':
+        r.addCourse(classid)
         return True
     return False
     

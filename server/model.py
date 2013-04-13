@@ -66,3 +66,9 @@ class RedisModel(object):
         for k,v in sess.iteritems():
             self.r.hset("session:"+str(sid), k,v)
         return sess
+    
+    def addCourse(self,classid):
+        self.r.sadd("courses",classid)
+    
+    def getCourses(self,classid):
+        return self.r.smembers("courses")
