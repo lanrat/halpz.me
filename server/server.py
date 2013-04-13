@@ -42,7 +42,7 @@ def helpwith(classid):
     classid = str(classid)
     if validateclass(classid):
         if request.method == 'POST':
-            r.setSession(s['id'],{'name':request['name']})
+            r.setSession(s['id'],{'name':request.args['name']})
             r.studentAdd(classid,s['uid'])
         return render_template('class.html')
     return redirect(url_for('index'))
