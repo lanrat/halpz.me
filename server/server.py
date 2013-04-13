@@ -46,7 +46,7 @@ def helpwith(classid):
         if request.method == 'POST':
             dic = {}
             dic['name']=request.args['name']
-            dic['student_location']=request.args['student_location']
+            dic['studentlocation']=request.args['studentlocation']
             r.setSession(s['id'],dic)
             r.studentAdd(classid,s['id'])
         return render_template('class.html',currStudent=s,classId=classid)
