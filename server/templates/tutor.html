@@ -10,7 +10,7 @@
 	<title>Welcome to Halpz.me</title>
 	<div id="header">
 		<div id="innerheader" class="bodyContainer">
-			<img src="/static/halpzme_logo.png" />
+			<a href="/"><img src="/static/halpzme_logo.png" /></a>
 			<div id="currentTutor">
 				<img src="{{ currTutor.profPicUrl }}"/>
 				<div class="details">
@@ -33,29 +33,17 @@
 				<div id="nowServing">
 					<div class="boardName bigFont">now serving</div>
 					<div class="student">
-						<img src="{{ nowServing.profPicUrl }}"/>
+						<img src=""/>
 						<div class="details">
-							<div class="bigFont">{{ nowServing.fullName }}/div>
-							<div class="smallFont">{{ nowServing.location }} ({{ nowServing.classId }})</div>
+							<div class="bigFont">Bob</div>
+							<div class="smallFont">Here (CSE 127)</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div id="queues">
-			{% for queue in queues %}
-				<div class="queue">
-					<div class="boardName bigFont">{{ queue.classId }}</div>
-					{% for student in queue.students %}
-						<div class="student">
-							<img src="{{ student.profPicUrl }}"/>
-							<div class="details">
-								<div class="bigFont">{{ student.fullName }}</div>
-							</div>
-						</div>
-				{% endfor %}
-				</div>
-			{% endfor %}
+			
 				<div class="addNewClass">
 					add new class
 				</div>

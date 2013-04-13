@@ -19,9 +19,11 @@ r = model.RedisModel()
 @app.route('/')
 def index():
     s = session_init()
+    if s['type']=='tutor':
+        return render_template('tutor.html', currTutor=s)
     return render_template('index.html')
 
-@app.route('/tutor/', methods=['POST'])
+@app.route('/tutor/', methods=['GET'])
 def tutorhome():
     #changes session to tutor
     s = session_init()
@@ -29,7 +31,7 @@ def tutorhome():
     r.setSession(s['id'],s)
     return redirect(url_for('index'))
 
-@app.route('/student/', methods=[ 'POST'])
+@app.route('/student/', methods=[ 'GET'])
 def studenthome():
     #changes session to student
     s = session_init()
