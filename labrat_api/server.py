@@ -12,7 +12,14 @@ def hello():
 
 @app.route("/<host>/user.json", methods=['GET'])
 def user(host):
-    return json.dumps(mod.getUserFromHost(host))
+    data = mod.getUserFromIP(host)
+    if data:
+      for line in data:
+        if 'ieng' in line['hostname']:
+          line['location'] = 'online'
+        else:
+          line['location'] = line['hostname'][7:]
+    return json.dumps(data)
 
 @app.route("/<user>.json", methods=['GET'])
 def finduser(user):
