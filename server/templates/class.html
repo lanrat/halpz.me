@@ -11,50 +11,41 @@
 	<div id="header">
 		<div id="innerheader" class="bodyContainer">
 			<img src="/static/halpzme_logo.png" />
-			<div id="classid">cse30</div>
+			<div id="classid">{{ classId }}</div>
 		</div>
 	</div>
 	<div class="bodyContainer bigFont">
 		<div id="currStudent">
-			<img src="/static/profpics/0.jpg"/>
+			<img src="{{ currStudent.profPicUrl }}"/>
 			<div class="details">
-				<div class="bigFont">Jane Joe Student</div>
-				<div class="smallFont">b230 terminal 42</div>
+				<div class="bigFont">{{ currStudent.fullName }}</div>
+				<div class="smallFont">{{ currStudent.location }}</div>
 			</div>
 		</div>
 		<div id="boardsAndTutors">
 			<div id="tutors">
 				<div id="boardName" class="bigFont">the tutors</div>
-				<div id="tutor">
-					<img src="/static/profpics/11.jpg"/>
-					<div class="details">
-						<div class="bigFont">Jack</div>
-						<div class="smallFont">until 5pm</div>
+				{% for tutor in currentTutors %}
+					<div id="tutor">
+						<img src="{{ tutor.profPicUrl }}"/>
+						<div class="details">
+							<div class="bigFont">{{ tutor.firstName }}</div>
+							<div class="smallFont">until {{ tutor.endHours }}</div>
+						</div>
 					</div>
-				</div>
+				{% endfor %}
 			</div>
 			<div id="board">
 				<div id="boardName" class="bigFont">the board</div>
-				<div class="student">
-					<img src="/static/profpics/3.jpg"/>
-					<div class="details">
-						<div class="bigFont">Matt Dijkstra</div>
+				{% for student in queuedStudents %}
+					<div class="student">
+						<img src="{{ student.profPicUrl }}"/>
+						<div class="details">
+							<div class="bigFont">{{ student.fullName }}</div>
+						</div>
 					</div>
-				</div>
-				<div class="student">
-					<img src="/static/profpics/6.jpg"/>
-					<div class="details">
-						<div class="bigFont">Lauren Ipsum</div>
-					</div>
-				</div>
-				<div class="student">
-					<img src="/static/profpics/10.jpg"/>
-					<div class="details">
-						<div class="bigFont">Joe Bob</div>
-					</div>
-				</div>
+				{% endfor %}
 			</div>
-			
 		</div>
 	</div>
 {% endblock %}
