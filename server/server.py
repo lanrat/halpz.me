@@ -1,5 +1,7 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
 import model
+import json
+import uuid
 
 #initialize flask server and redis db
 app = Flask(__name__)
@@ -12,59 +14,93 @@ r = model.RedisModel()
 #default
 @app.route('/')
 def index():
+    s = session_init()
     return render_template('index.html')
 
 @app.route('/tutor/', methods=['POST'])
 def tutorhome():
     #changes session to tutor
-    pass
+    s = session_init()
+    s['type'] = 'tutor'
+    r.setSession(s)
+    return redirect(url_for('index'))
 
 @app.route('/student/', methods=[ 'POST'])
 def studenthome():
     #changes session to student
-    pass
+    s = session_init()
+    s['type'] = 'student'
+    r.setSession(s)
+    return redirect(url_for('index'))
 
 @app.route('/with/<classid>', methods=['POST', 'GET'])
 def helpwith(classid):
     #get - show their place in the queue, ie 4th on the list(should update in real time)
     # show an ask for help button with autofill name and location field based on Ian's API
     #post - student requests tutor for class
-    pass
+    s = session_init()
+    if validateclass(classid):
+        pass
+    return redirect(url_for('index'))
 
 @app.route('/helped/<studentid>/with/<classid>', methods=[ 'POST'])
 def helped(studentid,classid):
     #adds student to queue
-    pass
+    s = session_init()
+    if validatestudent(s,studentid) and validateclass(classid):
+        pass
+    return redirect(url_for('index'))
 
 @app.route('/helpnext/<classid>', methods=[ 'POST'])
 def helpnext(classid):
     #helps next student in classid
-    pass
+    s = session_init()
+    if validateclass(classid):
+        pass
+    return redirect(url_for('index'))
 
 @app.route('/cannothelp/<studentid>/with/<classid>', methods=[ 'POST'])
 def cannothelp(studentid,classid):
     #puts student back on beginning of queue
-    pass
+    s = session_init()
+    if validatestudent(s,studentid) and validateclass(classid):
+        r.pendingBackToClass(classid,studentid)
+    return redirect(url_for('index'))
  
 @app.route('/queue/<classid>.json', methods=[ 'GET'])
 def queue(classid):
     #gets queue for class in json
-    pass   
+    s = session_init()
+    if validateclass(classid):
+        pass
+    return redirect(url_for('index'))   
 
 @app.route('/index/<studentid>/in/<classid>', methods=[ 'POST'])
 def indexedstudent(studentid,classid):
     #gets index of student in class queue
-    pass
+    s = session_init()
+    if validatestudent(s,studentid) and validateclass(classid):
+        pass
+    return redirect(url_for('index'))
 
-
+def session_init():
+    if 'uid' not in session:
+        session['uid'] = uuid.uuid4()
+    s = r.getSession(session['uid'])
+    return s
+    
 def validatestudent(session,studentid):
     #first check if session matches student or session is a tutor
     #then make sure student is valid format
-    pass
+    if isinstance(studentid,str) and len(studentid)<50 and (session['type']=='tutor' or session['id']==studentid):
+        return True
+    return False
 
 def validateclass(classid):
     #make sure class if valid format
-    pass
+    if isinstance(classid,str) and len(classid)<50 and classid[:3]=='cse':
+        return True
+    return False
     
 #achievement idea: over 1 million served(like mcdonalds)
 if __name__ == "__main__":
