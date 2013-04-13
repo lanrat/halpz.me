@@ -13,10 +13,10 @@ $(function(){
         var output = '<div class="boardName bigFont">the tutors</div>'; 
         for (var i = 0; data && i < data.length; i++){
                 output += '<div class="tutor">';
-                output += '<img src =' + data[i].profilePicUrl + '/>';
+                output += '<img src ="' + data[i]['profilePicUrl'] + '"/>';
                 output += '<div class="details">';
-                output += '<div class="bigFont">' + data[i].name + '</div>';
-                output += '<div class="smallFont">until '+ data[i].endHours + '</div>';
+                output += '<div class="bigFont">' + data[i]['name'] + '</div>';
+                output += '<div class="smallFont">until '+ data[i]['endHours'] + '</div>';
                 output += '</div>';
                 output += '</div>';
         }
@@ -29,9 +29,9 @@ $(function(){
         var output = '<div class="boardName bigFont">the board</div>'; 
         for (var i = 0; data && i < data.length; i++){
                 output += '<div class="student">';
-                output += '<img src =' + data[i].profilePicUrl + '/>';
+                output += '<img src ="' + data[i]['profilePicUrl'] + '"/>';
                 output += '<div class="details">';
-                output += '<div class="bigFont">' + data[i].name + '</div>';
+                output += '<div class="bigFont">' + data[i]['name'] + '</div>';
                 output += '</div>';
                 output += '</div>';
         }
