@@ -10,13 +10,9 @@ mod = PgsqlModel()
 def hello():
     return "Welcome to our api"
 
-@app.route("/location.json", methods=['GET'])
-def location():
-    return json.dump(getLocationFromHost(request.form['host']))
-
-@app.route("/user.json", methods=['GET'])
-def user():
-    return json.dump(getUserFromHost(request.form['host']))
+@app.route("/<host>/user.json", methods=['GET'])
+def user(host):
+    return json.dump(getUserFromHost(host))
 
 if __name__ == "__main__":
     app.run()
