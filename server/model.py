@@ -71,4 +71,4 @@ class RedisModel(object):
         self.r.sadd("courses",classid)
     
     def getCourses(self):
-        return self.r.smembers("courses")
+        return list(self.r.smembers("courses"))
