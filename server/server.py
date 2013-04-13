@@ -1,4 +1,5 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
+import socket
 import model
 import json
 import requests
@@ -44,13 +45,10 @@ def helpwith(classid):
     if validateclass(classid):
         if request.method == 'POST':
             dic = {}
-            if 'name' in request.args:
-                dic['name']=request.args['name']
-            if 'location' in request.args:
-                dic['student_location']=request.args['student_location']
-            if dic:
-                r.setSession(s['id'],dic)
-            r.studentAdd(classid,s['uid'])
+            dic['name']=request.args['name']
+            dic['studentlocation']=request.args['studentlocation']
+            r.setSession(s['id'],dic)
+            r.studentAdd(classid,s['id'])
         return render_template('class.html',currStudent=s,classId=classid)
     return redirect(url_for('index'))
 
@@ -145,7 +143,6 @@ def lookup_student_name_and_location():
     ip = request.headers['X-Forwarded-For'])
 
    # hostname = magic_shit(ip)
-
     #user's real name
     name = requests.get('http://localhost:5001/' + hostname + '/user.json').json()[0]
     if name:

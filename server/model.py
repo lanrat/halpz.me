@@ -46,8 +46,8 @@ class RedisModel(object):
         output=[]
         for sid in l:
             d = self.r.hgetall("session:"+str(sid))
-            output = d  
-        return l
+            output.append(d)
+        return output
     
     def getSession(self,sid):
         s = self.r.hgetall("session:"+str(sid))
@@ -55,8 +55,8 @@ class RedisModel(object):
             return s
         defaults = {'type':'student',
                     'name':'',
-                    'tutor_classes':'',
-                    'student_location':'',
+                    'tutorclasses':'',
+                    'studentlocation':'',
                     'id':str(sid),
                     'profilePicUrl':'/static/profpics/'+str(random.randint(0,22))+'.jpg',
                     }
