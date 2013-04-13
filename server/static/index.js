@@ -6,7 +6,7 @@ $(function() {
     function extractLast( term ) {
       return split( term ).pop();
     }
-    $.ajax('/courses.json',{"success":function(data){
+    $.ajax('/courses.json',{dataType: "json","success":function(data){
         availableTags = data;
         $( "#tags" )
         // don't navigate away from the field on tab when selecting an item
