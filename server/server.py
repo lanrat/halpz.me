@@ -124,8 +124,8 @@ def validateclass(classid):
         return True
     return False
 
-def lookup_student_name(computer):
-    return requests.get('http://localhost:5001/' + computer + '/user.json').json()
+def lookup_student_name():
+    return requests.get('http://localhost:5001/' + request.host + '/user.json').json()
 
 #achievement idea: over 1 million served(like mcdonalds)
 if __name__ == "__main__":
