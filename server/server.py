@@ -10,12 +10,6 @@ r = model.RedisModel()
 def index():
     return 'Welcome to Halpzme'
 
-@app.route('/login/')
-def login():
-	#give option to pick whether student or tutor
-		#depending on response go to tutorhome or studenthome
-	pass
-
 @app.route('/tutorhome/')
 def tutorhome():
 	#if they didn't specify which classes they will tutor, and the time they will tutor until:
@@ -37,10 +31,11 @@ def studenthome():
 
 	pass
 
-@app.route('/with/<class>')
-def helpwith(class):
+@app.route('/with/<classid>')
+def helpwith(classid):
 	pass
 
+#achievement idea: over 1 million served(like mcdonalds)
 if __name__ == "__main__":
     app.run()
 
