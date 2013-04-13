@@ -14,27 +14,27 @@ def hello():
 def user(host):
     return json.dumps(mod.getUserFromHost(host))
 
-@app.route("topusers.json", methods=['GET'])
+@app.route("/topusers.json", methods=['GET'])
 def topusers():
     return json.dumps(mod.getTopUsers())
 
-@app.route("occupantcount.json", methods=['GET'])
+@app.route("/occupantcount.json", methods=['GET'])
 def occupantcount():
     return json.dumps(mod.getOccupantCount())
 
-@app.route("labpie.json", methods=['GET'])
+@app.route("/labpie.json", methods=['GET'])
 def labpie():
     return json.dumps(mod.getLabPie())
 
-@app.route("labusage.json", methods=['GET'])
+@app.route("/labusage.json", methods=['GET'])
 def labusage():
     return json.dumps(mod.getLabUsage())
 
-@app.route("totalhosts.json", methods=['GET'])
+@app.route("/totalhosts.json", methods=['GET'])
 def totalhosts():
     return json.dumps(mod.getTotalHosts())
 
-@app.route("onlinehistory.json", methods=['GET'])
+@app.route("/onlinehistory.json", methods=['GET'])
 def onlinehistory():
     return json.dumps(mod.getOnlineHistory())
 
