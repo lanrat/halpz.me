@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import model
 
 #initialize flask server and redis db
@@ -22,8 +22,7 @@ def index():
             #make them specify that(they will type in both)
     #else
             #show them how many students need help for each of the classes they are signed up for, and show a button for each class to say help a student from that class
-
-    return 'Welcome to Halpzme'
+    return render_template('index.html')
 
 @app.route('/tutor/', methods=['POST'])
 def tutorhome():
@@ -69,5 +68,5 @@ def indexedstudent(student,classid):
     
 #achievement idea: over 1 million served(like mcdonalds)
 if __name__ == "__main__":
-    app.run()
+    app.run(debug = True)
 
