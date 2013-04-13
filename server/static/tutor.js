@@ -32,8 +32,10 @@ $(function() {
             
         });
         });
+        });
         return false;
     });
+        
     
     $('.addNewClass').click(function(){
         $('#addClassDialog').removeClass('hidden');
