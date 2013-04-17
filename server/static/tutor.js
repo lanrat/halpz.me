@@ -4,7 +4,6 @@ function getQueue(classid, callback){
 
 $(function() {
     
-   
     
     $('#addClassForm').submit(function(){
         $('#addClassDialog').addClass('hidden');
@@ -26,6 +25,20 @@ $(function() {
             $.ajax('/helpnext/'+info,{dataType:"json",success:function(d){
                 $('.currLocation').html( d.studentlocation);
                 $('.currStudent').html(d.name);
+        var minutes = 0;
+    var seconds = 0;
+    
+   window.setInterval(function(){
+       seconds+=1;
+       if (seconds==60){
+           minutes+=1;
+           seconds=0;
+       }
+       
+       $('.stopwatch').html( minutes.toString(10)+":"+("00" + seconds.toString(10)).substr(-2)+" min");
+       
+       
+   },1000);
                 
                 
             }
